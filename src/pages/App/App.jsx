@@ -6,6 +6,7 @@ import Login from "../Login/Login";
 import authService from "../../services/authService";
 import Users from "../Users/Users";
 import "./App.css";
+import Home from "../Home/Home";
 
 class App extends Component {
   state = {
@@ -30,9 +31,7 @@ class App extends Component {
           exact
           path="/"
           render={() => (
-            <main>
-              <h1>Welcome. This is an authorization template.</h1>
-            </main>
+            <Home />
           )}
         />
         <Route
