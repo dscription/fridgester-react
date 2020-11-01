@@ -23,26 +23,26 @@ const NavBar = ({ user, handleLogout }) => {
           {/* <NavbarBrand href="/">reactstrap</NavbarBrand> */}
           <NavbarToggler onClick={toggle} />
           <Collapse isOpen={isOpen} navbar>
-            // Take me Home/Fridge
+            {/* // Take me Home/Fridge */}
             <Nav className="mr-auto" navbar>
               <NavItem>
                 <NavLink id="navItem" href="/">
                   Welcome, {user.name}
                 </NavLink>
               </NavItem>
-              // Take me to shopping list
+              {/* // Take me to shopping list */}
               <NavItem>
                 <NavLink id="navItem" href="/shopping-list">
                   Shopping List
                 </NavLink>
               </NavItem>
-              // Take me to favorite recipes
+              {/* // Take me to favorite recipes */}
               <NavItem>
                 <NavLink id="navItem" href="/favorites">
                   Favorite Recipes
                 </NavLink>
               </NavItem>
-              // Let me logout
+              {/* // Let me logout */}
               <NavItem>
                 <NavLink id="navItem" href=" " onClick={handleLogout}>
                   Log Out

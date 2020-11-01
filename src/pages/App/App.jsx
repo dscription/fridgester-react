@@ -5,6 +5,8 @@ import Signup from "../Signup/Signup";
 import Login from "../Login/Login";
 import authService from "../../services/authService";
 import Users from "../Users/Users";
+import Favorites from "../Favorites/Favorites"
+import ShoppingList from "../ShoppingList/ShoppingList"
 import "./App.css";
 
 class App extends Component {
@@ -59,6 +61,18 @@ class App extends Component {
             exact
             path="/users"
             render={() => (user ? <Users /> : <Redirect to="/login" />)}
+          />
+          {/* Route to Recipe */}
+          <Route
+            exact
+            path="/favorites"
+            render={() => <Favorites />}
+          />
+          {/* Route to Shopping List */}
+          <Route
+            exact
+            path="/shopping-list"
+            render={() => <ShoppingList />}
           />
         </div>
       </>
