@@ -7,6 +7,8 @@ import authService from "../../services/authService";
 import Users from "../Users/Users";
 import Favorites from "../Favorites/Favorites"
 import ShoppingList from "../ShoppingList/ShoppingList"
+import Fridge from "../Fridge/Fridge"
+import Landing from "../Landing/Landing"
 import "./App.css";
 
 class App extends Component {
@@ -32,10 +34,7 @@ class App extends Component {
           <Route
             exact
             path="/"
-            render={() => (
-              // If user logged in render Fridge page, if not logged in render landing page.
-              <h1>Landing Page</h1>
-            )}
+            render={() => (user ? <Fridge /> : <Landing />)}
           />
           <Route
             exact

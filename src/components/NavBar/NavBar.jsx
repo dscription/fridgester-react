@@ -18,31 +18,26 @@ const NavBar = ({ user, handleLogout }) => {
   return (
     <>
       {user ? (
-        // If user is logged in they will see their avatar
-        <NavBar color="light" light expand="md">
+        <Navbar color="light" light expand="md">
           {/* <NavbarBrand href="/">reactstrap</NavbarBrand> */}
           <NavbarToggler onClick={toggle} />
           <Collapse isOpen={isOpen} navbar>
-            {/* // Take me Home/Fridge */}
             <Nav className="mr-auto" navbar>
               <NavItem>
                 <NavLink id="navItem" href="/">
                   Welcome, {user.name}
                 </NavLink>
               </NavItem>
-              {/* // Take me to shopping list */}
               <NavItem>
                 <NavLink id="navItem" href="/shopping-list">
                   Shopping List
                 </NavLink>
               </NavItem>
-              {/* // Take me to favorite recipes */}
               <NavItem>
                 <NavLink id="navItem" href="/favorites">
                   Favorite Recipes
                 </NavLink>
               </NavItem>
-              {/* // Let me logout */}
               <NavItem>
                 <NavLink id="navItem" href=" " onClick={handleLogout}>
                   Log Out
@@ -50,7 +45,6 @@ const NavBar = ({ user, handleLogout }) => {
               </NavItem>
             </Nav>
             <NavbarText>
-              {/* this will be replaced with a real user image */}
               <Link
                 to={{
                   pathname: "/user",
@@ -67,7 +61,7 @@ const NavBar = ({ user, handleLogout }) => {
               </Link>
             </NavbarText>
           </Collapse>
-        </NavBar>
+        </Navbar>
       ) : (
         <Navbar color="light" light expand="md">
           <NavbarToggler onClick={toggle} />
