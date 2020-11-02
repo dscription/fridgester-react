@@ -1,14 +1,38 @@
 const mongoose = require('mongoose');
 const bcrypt = require("bcrypt");
+const Schema = mongoose.Schema;
 
 const SALT_ROUNDS = 6;
 
-const userSchema = new mongoose.Schema({
-  name: String,
+const recipeSchema = new Schema({
+  name: {type: String, required: true},
+  originalLink: {type: String, required: true},
+  originalIngredients: Array,
+  isFavorite: Boolean,
+  modifiedIngredients: Array
+})
+
+const fridgeItemSchema = new Schema({
+  name: {type: String, required: true},
+  expiration: Date,
+  isPerishable: Boolean,
+  isExpired: Boolean,
+  image: String,
+  dateAdded: Date,
+  dateRemoved: Date,
+})
+
+const userSchema = new Schema({
+  firstName: {type: String, required: true, lowercase: true},
+  lastName:  {type: String, required: true, lowercase: true},
   email: {type: String, required: true, lowercase: true, unique: true},
-  password: String
-}, {
-  timestamps: true
+  password: String,
+  currentFridge: [fridgeItemSchema],
+  fridgeHistory: [fridgeItemSchema],
+  recipes: [recipeSchema],
+
+},
+  { timestamps: true
 });
 
 userSchema.set('toJSON', {

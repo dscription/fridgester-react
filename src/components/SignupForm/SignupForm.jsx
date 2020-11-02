@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import authService from "../../services/authService";
+import Container from "../../styledComponents/Container";
 
 class SignupForm extends Component {
   state = {
@@ -38,50 +39,52 @@ class SignupForm extends Component {
   render() {
     const { name, email, password, passwordConf } = this.state;
     return (
-      <div>
-        <h3>Sign Up</h3>
-        <form autoComplete="off" onSubmit={this.handleSubmit}>
-          <input
-            type="text"
-            autoComplete="off"
-            id="name"
-            value={name}
-            name="name"
-            onChange={this.handleChange}
-          />
-          <label htmlFor="name">Name</label>
-          <input
-            type="text"
-            autoComplete="off"
-            id="email"
-            value={email}
-            name="email"
-            onChange={this.handleChange}
-          />
-          <label htmlFor="email">Email</label>
-          <input
-            type="password"
-            autoComplete="off"
-            id="password"
-            value={password}
-            name="password"
-            onChange={this.handleChange}
-          />
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            autoComplete="off"
-            id="confirm"
-            value={passwordConf}
-            name="passwordConf"
-            onChange={this.handleChange}
-          />
-          <label htmlFor="confirm">Confirm Password</label>
-          <button disabled={this.isFormInvalid()}>Sign Up</button>
-          &nbsp;&nbsp;
-          <Link to="/">Cancel</Link>
-        </form>
-      </div>
+      <>
+        <Container>
+          <h3>Sign Up</h3>
+          <form autoComplete="off" onSubmit={this.handleSubmit}>
+            <input
+              type="text"
+              autoComplete="off"
+              id="name"
+              value={name}
+              name="name"
+              onChange={this.handleChange}
+            />
+            <label htmlFor="name">Name</label>
+            <input
+              type="text"
+              autoComplete="off"
+              id="email"
+              value={email}
+              name="email"
+              onChange={this.handleChange}
+            />
+            <label htmlFor="email">Email</label>
+            <input
+              type="password"
+              autoComplete="off"
+              id="password"
+              value={password}
+              name="password"
+              onChange={this.handleChange}
+            />
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              autoComplete="off"
+              id="confirm"
+              value={passwordConf}
+              name="passwordConf"
+              onChange={this.handleChange}
+            />
+            <label htmlFor="confirm">Confirm Password</label>
+            <button disabled={this.isFormInvalid()}>Sign Up</button>
+            &nbsp;&nbsp;
+            <Link to="/">Cancel</Link>
+          </form>
+        </Container>
+      </>
     );
   }
 }
