@@ -14,8 +14,13 @@ class Fridge extends Component {
         'eggs',
         'chicken'
     ]
-
   };
+
+  handleClick = (e) => {
+    const result = e.target.value
+    this.props.handleAddToData(result)
+  }
+
   render() {
     const { fridgeItems } = this.state;
     return (
@@ -32,6 +37,7 @@ class Fridge extends Component {
           {fridgeItems.map((item, index) => (
             <h1>{item}</h1>
           ))}
+          <button value={'something else'} onClick={this.handleClick}>Handle add to data</button>
         </Container>
       </>
     );
