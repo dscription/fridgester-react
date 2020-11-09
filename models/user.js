@@ -7,9 +7,9 @@ const SALT_ROUNDS = 6;
 const recipeSchema = new Schema({
   name: {type: String, required: true},
   originalLink: {type: String, required: true},
-  originalIngredients: Array,
-  isFavorite: Boolean,
-  modifiedIngredients: Array
+  originalIngredients: {type: Array},
+  isFavorite: {tpye: Boolean, default: false},
+  modifiedIngredients: {type: Array, default: []}
 })
 
 const fridgeItemSchema = new Schema({
@@ -23,9 +23,17 @@ const fridgeItemSchema = new Schema({
 })
 
 const userSchema = new Schema({
-  firstName: {type: String, required: true, lowercase: true},
-  lastName:  {type: String, required: true, lowercase: true},
-  email: {type: String, required: true, lowercase: true, unique: true},
+  firstName: {
+    type: String, 
+    // required: true, 
+    lowercase: true},
+  lastName:  {type: String, 
+    // required: true, 
+    lowercase: true},
+  email: {type: String, 
+    // required: true, 
+    lowercase: true, unique: true},
+
   password: String,
   currentFridge: [fridgeItemSchema],
   fridgeHistory: [fridgeItemSchema],

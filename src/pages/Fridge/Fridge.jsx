@@ -1,25 +1,56 @@
-import React, { Component } from "react";
-import { Button, Form, FormGroup, Label, Input, FormText } from "reactstrap";
-import Container from "../../styledComponents/Container";
+import React, { Component } from 'react';
+import {
+  Button,
+  Form,
+  FormGroup,
+  Label,
+  Input,
+  FormText,
+  Breadcrumb,
+  InputGroup,
+  InputGroupAddon,
+} from 'reactstrap';
+import FridgeItem from '../../components/FridgeItem/FridgeItem';
+import Container from '../../styledComponents/Container';
+import * as fridgeItemAPI from '../../services/fridgeItemService';
 
 class Fridge extends Component {
   state = {
-    //state will hold some sample food items which will be added to the user object in the database as soon as the user is created. 
-    // Once the user gets to this page they can remove the foods and add their own.
-    fridgeItems: [
-        'bread',
-        'cheese',
-        'milk',
-        'spinach',
-        'eggs',
-        'chicken'
-    ]
+    value: '',
+    formData: {
+      name: '',
+      expiration: '',
+      isPerishable: null,
+      isExpired: null,
+      image: '',
+      dateAdded: '',
+      dateRemoved: '',
+    },
+    fridgeItems: this.props.user.currentFridge,
   };
 
-  handleClick = (e) => {
-    const result = e.target.value
-    this.props.handleAddToData(result)
-  }
+  handleAddFoodItem = async (e) => {
+    e.preventDefault();
+    const { formData } = this.state;
+    const newFridge = await fridgeItemAPI.createFridgeItem(formData);
+    this.setState({ fridgeItems: newFridge });
+  };
+
+  handleRemoveFoodItem = async (fridgeItemId) => {
+    const newFridge = await fridgeItemAPI.removeFridgeItem(fridgeItemId);
+    console.log(newFridge)
+    this.setState({ fridgeItems: newFridge });
+  };
+
+  handleChange = async (e) => {
+    const formData = {
+      ...this.state.formData,
+    };
+    formData.name = await e.target.value;
+    this.setState({ formData });
+  };
+
+  // TODO: handle API call to edemam on component did update
 
   render() {
     const { fridgeItems } = this.state;
@@ -27,17 +58,29 @@ class Fridge extends Component {
       <>
         <Container>
           <h1>This is your fridge.</h1>
-          <Form>
+          <Form onSubmit={this.handleAddFoodItem}>
             <FormGroup>
-              <Label for="search">Search</Label>
-              <Input id="search" placeholder="Search for item."></Input>
+              <InputGroup>
+                <InputGroupAddon addonType="prepend">
+                  <Button type="submit">Add Food</Button>
+                </InputGroupAddon>
+                <Input
+                  id="search"
+                  name="name"
+                  onChange={this.handleChange}
+                  placeholder="Search for item."
+                />
+              </InputGroup>
             </FormGroup>
           </Form>
-          {/* Search Results Map */}
+
           {fridgeItems.map((item, index) => (
-            <h1>{item}</h1>
+            <FridgeItem
+              key={index}
+              item={item}
+              handleRemoveFoodItem={this.handleRemoveFoodItem}
+            />
           ))}
-          <button value={'something else'} onClick={this.handleClick}>Handle add to data</button>
         </Container>
       </>
     );

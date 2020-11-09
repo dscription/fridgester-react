@@ -1,8 +1,5 @@
-
-
-
 # Pages - Sub (Components)
-- Landing Page (logged out)
+- [ ] Landing Page (logged out)
   - Header Image
   - Welcome Text (what is fridgester)
   - CTA (signup, login)

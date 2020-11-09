@@ -16,7 +16,6 @@ class App extends Component {
     user: authService.getUser(),
   };
 
-
   handleLogout = () => {
     authService.logout();
     this.setState({ user: null });
@@ -35,7 +34,7 @@ class App extends Component {
           <Route
             exact
             path="/"
-            render={() => (user ? <Fridge handleAddToData={this.handleAddToData}/> : <Landing />)}
+            render={() => (user ? <Fridge user={user}/> : <Landing />)}
           />
           <Route
             exact
