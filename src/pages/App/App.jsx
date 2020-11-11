@@ -1,15 +1,16 @@
-import React, { Component } from "react";
-import { Route, Redirect } from "react-router-dom";
-import NavBar from "../../components/NavBar/NavBar";
-import Signup from "../Signup/Signup";
-import Login from "../Login/Login";
-import authService from "../../services/authService";
-import Users from "../Users/Users";
-import Favorites from "../Favorites/Favorites"
-import ShoppingList from "../ShoppingList/ShoppingList"
-import Fridge from "../Fridge/Fridge"
-import Landing from "../Landing/Landing"
-import "./App.css";
+import React, { Component } from 'react';
+import { Route, Redirect } from 'react-router-dom';
+import NavBar from '../../components/NavBar/NavBar';
+import Signup from '../Signup/Signup';
+import Login from '../Login/Login';
+import authService from '../../services/authService';
+import Users from '../Users/Users';
+import Favorites from '../Favorites/Favorites';
+import ShoppingList from '../ShoppingList/ShoppingList';
+import Fridge from '../Fridge/Fridge';
+import Landing from '../Landing/Landing';
+import Results from '../Results/Results';
+import './App.css';
 
 class App extends Component {
   state = {
@@ -34,7 +35,7 @@ class App extends Component {
           <Route
             exact
             path="/"
-            render={() => (user ? <Fridge user={user}/> : <Landing />)}
+            render={() => (user ? <Fridge user={user} /> : <Landing />)}
           />
           <Route
             exact
@@ -62,16 +63,15 @@ class App extends Component {
             render={() => (user ? <Users /> : <Redirect to="/login" />)}
           />
           {/* Route to Recipe */}
-          <Route
-            exact
-            path="/favorites"
-            render={() => <Favorites />}
-          />
+          <Route exact path="/favorites" render={() => <Favorites />} />
           {/* Route to Shopping List */}
+          <Route exact path="/shopping-list" render={() => <ShoppingList />} />
           <Route
             exact
-            path="/shopping-list"
-            render={() => <ShoppingList />}
+            path="/results"
+            render={({ history, location }) => (
+              <Results history={history} location={location} />
+            )}
           />
         </div>
       </>

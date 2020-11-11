@@ -26,7 +26,6 @@ function removeFridgeItem(req, res) {
       }
     });
     user.save();
-    console.log(user.currentFridge)
     res.json(user.currentFridge);
   });
 }

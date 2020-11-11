@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import {
   Button,
   Form,
@@ -27,6 +28,7 @@ class Fridge extends Component {
       dateRemoved: '',
     },
     fridgeItems: this.props.user.currentFridge,
+    generalSearchTerms: [],
   };
 
   handleAddFoodItem = async (e) => {
@@ -34,12 +36,14 @@ class Fridge extends Component {
     const { formData } = this.state;
     const newFridge = await fridgeItemAPI.createFridgeItem(formData);
     this.setState({ fridgeItems: newFridge });
+    this.updateGeneralSearchTerms(this.state.fridgeItems)
+
   };
 
   handleRemoveFoodItem = async (fridgeItemId) => {
     const newFridge = await fridgeItemAPI.removeFridgeItem(fridgeItemId);
-    console.log(newFridge)
     this.setState({ fridgeItems: newFridge });
+    this.updateGeneralSearchTerms(this.state.fridgeItems)
   };
 
   handleChange = async (e) => {
@@ -50,7 +54,20 @@ class Fridge extends Component {
     this.setState({ formData });
   };
 
-  // TODO: handle API call to edemam on component did update
+  updateGeneralSearchTerms = (fridgeItems) => {
+    const fridge = fridgeItems;
+    const generalSearchTerms = [];
+    fridge.forEach((item, index) => {
+      generalSearchTerms.push(item.name);
+    });
+    this.setState({ generalSearchTerms });
+  };
+
+  componentDidMount() {
+    this.updateGeneralSearchTerms(this.state.fridgeItems)
+  }
+
+ 
 
   render() {
     const { fridgeItems } = this.state;
@@ -81,6 +98,17 @@ class Fridge extends Component {
               handleRemoveFoodItem={this.handleRemoveFoodItem}
             />
           ))}
+          <Link
+            to={{
+              pathname: '/results',
+              state: {
+                generalSearchTerms: this.state.generalSearchTerms,
+                user: this.props.user,
+              },
+            }}
+          >
+            <Button>Search Recipes</Button>
+          </Link>
         </Container>
       </>
     );

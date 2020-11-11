@@ -1,0 +1,4 @@
+
+
+
+GET http://www.recipepuppy.com/api/?i=onions,chicken,spinach&q=sandwich&p=3
