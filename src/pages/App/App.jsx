@@ -12,6 +12,9 @@ import Landing from '../Landing/Landing';
 import Results from '../Results/Results';
 import './App.css';
 
+// TODO: Create a global context for the query because I dont want to be passing it down all over the place as props.
+// const QueryContext = React.createContext([])
+
 class App extends Component {
   state = {
     user: authService.getUser(),

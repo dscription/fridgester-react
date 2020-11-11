@@ -1,26 +1,43 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { Button } from 'reactstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHeart } from '@fortawesome/free-solid-svg-icons'
+import {
+  Card,
+  CardImg,
+  // CardText,
+  CardBody,
+  CardTitle,
+  Button,
+} from 'reactstrap';
 
-const ResultItem = ({ details }) => {
-  const { title, href, ingredients } = details;
-  const ingr = ingredients.split(", ")
+
+const RecipeResult = ({ details, fridgeIngredients }) => {
+  const { title, href, ingredients, thumbnail } = details;
+  const ingr = ingredients.split(', ');
+
   return (
-    <Card>
-      <h1>{title}</h1>
-      <h1>{href}</h1>
-      <ul>
-        {ingr.map((ingredient) => (
-          <li>{ingredient}</li>
-        ))}
-      </ul>
-    </Card>
+    <Container>
+      <Card>
+        <CardImg top width="50%" src={thumbnail} alt="Image of Recipe" />
+        <CardBody>
+          <CardTitle>{title}</CardTitle>
+          <ul>
+            {ingr.map((ingredient) => (
+              <li>{ingredient}</li>
+            ))}
+          </ul>
+        </CardBody>
+        <Button color="primary">Shopping List</Button>
+        <Button color="success"><FontAwesomeIcon icon={faHeart}/></Button>
+      </Card>
+    </Container>
   );
 };
 
-const Card = styled.div`
-  margin: 5px;
-  border: solid 3px black;
+const Container = styled.div`
+  margin: 10px 5px;
 `;
 
-export default ResultItem;
+export default RecipeResult;

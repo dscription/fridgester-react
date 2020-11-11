@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import ResultItem from '../../components/ResultItem/ResultItem';
 import * as fridgeItemAPI from '../../services/fridgeItemService';
 import styled from 'styled-components';
+import RecipeResult from '../../components/ResultItem/ResultItem';
 
 class Results extends Component {
   state = {
@@ -17,12 +17,16 @@ class Results extends Component {
 
   render() {
     const { results } = this.state;
+    const { generalSearchTerms: fridgeItems } = this.props.location.state;
 
     return (
       <>
         <Container>
           {results.map((result) => (
-            <ResultItem details={result} />
+            <RecipeResult
+              details={result}
+              fridgeIngredients={fridgeItems}
+            />
           ))}
         </Container>
       </>
