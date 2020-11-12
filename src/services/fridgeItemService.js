@@ -2,6 +2,22 @@ import axios from 'axios';
 import tokenService from './tokenService';
 const BASE_URL = '/api/users/';
 
+export function favoriteRecipe(fridgeItemId) {
+  // return fetch(
+  //   `${BASE_URL}recipe/${fridgeItem}`,
+  //   {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //       Authorization: 'Bearer ' + tokenService.getToken(),
+  //     },
+  //     body: JSON.stringify(fridgeItem),
+  //   },
+  //   { mode: 'cors' }
+  // ).then((res) => res.json());
+  console.log(`fridge service function hit with ${fridgeItemId}` )
+}
+
 export function createFridgeItem(fridgeItem) {
   return fetch(
     BASE_URL + 'add',
@@ -31,7 +47,7 @@ export function removeFridgeItem(fridgeItemId) {
   ).then((res) => res.json());
 }
 
-// TODO: Fix this issue with Edamam
+// TODO: Fix this issue with Edamam. We have an SEI resource on using a proxy for this problem.
 // export function searchApi(query) {
 //   console.log(query);
 //   return fetch(

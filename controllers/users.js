@@ -4,6 +4,7 @@ module.exports = {
   index,
   addFridgeItem,
   removeFridgeItem,
+  favoriteRecipe
 };
 
 function index(req, res) {
@@ -28,4 +29,17 @@ function removeFridgeItem(req, res) {
     user.save();
     res.json(user.currentFridge);
   });
+}
+
+function favoriteRecipe(req, res) {
+  User.findById(req.user._id)
+  .then((user) => {
+    user.recipes.forEach((recipe, index) => {
+      if (recipe._id == req.params.id) {
+        recipe.isFavorite = !recipe.isFavorite
+      }
+    })
+  user.save()
+  res.json(user.recipes)
+  })
 }

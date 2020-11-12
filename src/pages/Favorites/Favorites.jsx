@@ -1,7 +1,10 @@
 import React from 'react';
+import FridgeItem from '../../components/FridgeItem/FridgeItem';
+import ResultItem from '../../components/FridgeItem/FridgeItem'
 
-const Favorites = () => {
-  return ( <h1>Here are your favorite recipes.</h1> );
+const Favorites = (props) => {
+  // will receive props and render recipes with the favorited tag.
+  return ( <FridgeItem /> );
 }
  
 export default Favorites;

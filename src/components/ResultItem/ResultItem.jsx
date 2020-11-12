@@ -1,8 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHeart } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import * as fridgeItemAPI from '../../services/fridgeItemService';
+
 import {
   Card,
   CardImg,
@@ -12,10 +14,10 @@ import {
   Button,
 } from 'reactstrap';
 
-
 const RecipeResult = ({ details, fridgeIngredients }) => {
   const { title, href, ingredients, thumbnail } = details;
   const ingr = ingredients.split(', ');
+
 
   return (
     <Container>
@@ -30,7 +32,9 @@ const RecipeResult = ({ details, fridgeIngredients }) => {
           </ul>
         </CardBody>
         <Button color="primary">Shopping List</Button>
-        <Button color="success"><FontAwesomeIcon icon={faHeart}/></Button>
+        {/* <Button onClick(fridgeItemAPI.favoriteRecipe()) color="success"> */}
+          {/* <FontAwesomeIcon icon={faHeart} />
+        </Button> */}
       </Card>
     </Container>
   );
