@@ -1,7 +1,21 @@
 import tokenService from './tokenService';
 const BASE_URL = '/api/fridgeItems/';
 
-// TODO: create fridgeItem 
+export function getCurrentFridgeItems() {
+  console.log('getting current fridge');
+  return fetch(
+    BASE_URL,
+    {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + tokenService.getToken(),
+      },
+    },
+    { mode: 'cors' }
+  ).then((res) => res.json());
+}
+
 export function createFridgeItem(data) {
   return fetch(
     BASE_URL,
@@ -61,12 +75,6 @@ export function deleteFridgeItem(fridgeItemId) {
     { mode: 'cors' }
   ).then((res) => res.json());
 }
-
-
-
-
-
-
 
 // TODO: Fix this issue with Edamam. We have an SEI resource on using a proxy for this problem.
 // export function searchApi(query) {

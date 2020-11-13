@@ -3,9 +3,11 @@ import styled from 'styled-components';
 import { Button } from 'reactstrap';
 
 const FridgeItem = ({ item, handleRemoveFoodItem }) => {
+
   const handleClick = (e) => {
     // e.preventDefault();
     const fridgeItemId = e.target.value;
+    console.log(fridgeItemId)
     handleRemoveFoodItem(fridgeItemId);
   };
 

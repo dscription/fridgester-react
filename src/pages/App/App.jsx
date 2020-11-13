@@ -29,6 +29,8 @@ class App extends Component {
     this.setState({ user: authService.getUser() });
   };
 
+  
+
   render() {
     const { user } = this.state;
     return (
@@ -38,7 +40,13 @@ class App extends Component {
           <Route
             exact
             path="/"
-            render={() => (user ? <Fridge user={user} /> : <Landing />)}
+            render={() =>
+              user ? (
+                <Fridge user={user}  />
+              ) : (
+                <Landing />
+              )
+            }
           />
           <Route
             exact

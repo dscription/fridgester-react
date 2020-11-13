@@ -1,4 +1,5 @@
 const FridgeItem = require('../models/fridgeItem');
+const User = require('../models/user');
 
 module.exports = {
   index,
@@ -9,29 +10,51 @@ module.exports = {
 };
 
 function index(req, res) {
-  console.log('hit index fridgeITems');
-  // TODO
+  User.findById(req.user._id)
+    .populate('currentFridge')
+    .then((userObj) => {
+      res.json(userObj.currentFridge);
+    })
+    .catch((err) => {
+      res.json(err);
+    });
 }
 
 function create(req, res) {
-  console.log('hit create fridgeITems');
-
-  // TODO
+  FridgeItem.create(req.body).then((fridgeItem) => {
+    User.findById(req.user._id).then((user) => {
+      user.currentFridge.push(fridgeItem._id);
+      user.save();
+    });
+    res.status(200).json(fridgeItem);
+  });
 }
 
 function getOne(req, res) {
-  console.log('hit getOne fridgeITems');
-
-  // TODO
+  FridgeItem.findById(req.params.id)
+    .then((fridgeItem) => {
+      res.json(fridgeItem);
+    })
+    .catch((err) => {
+      res.json(err);
+    });
 }
 
+// TODO: Update FridgeItem with different ingredients.
 function update(req, res) {
   console.log('hit update fridgeITems');
-
-  // TODO
 }
 
 function deleteFridgeItem(req, res) {
-  console.log('hit delete fridgeItems');
-  // TODO
+  FridgeItem.findOneAndDelete({ _id: req.params.id }).then((fridgeItem) => {
+    User.findById(req.user._id).then((user) => {
+      user.currentFridge.forEach((fridgeItem, index) => {
+        if (fridgeItem == req.params.id) {
+          user.currentFridge.splice(index, 1);
+        }
+      });
+      user.save();
+    });
+    res.status(200).json(fridgeItem);
+  });
 }

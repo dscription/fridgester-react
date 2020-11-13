@@ -4,10 +4,7 @@ import {
   Button,
   Form,
   FormGroup,
-  Label,
   Input,
-  FormText,
-  Breadcrumb,
   InputGroup,
   InputGroupAddon,
 } from 'reactstrap';
@@ -27,23 +24,32 @@ class Fridge extends Component {
       dateAdded: '',
       dateRemoved: '',
     },
-    fridgeItems: this.props.user.currentFridge,
+    currentFridge: [],
     generalSearchTerms: [],
   };
 
   handleAddFoodItem = async (e) => {
     e.preventDefault();
     const { formData } = this.state;
-    const newFridge = await fridgeItemAPI.createFridgeItem(formData);
-    this.setState({ fridgeItems: newFridge });
-    this.updateGeneralSearchTerms(this.state.fridgeItems)
-
+    const newFridgeItem = await fridgeItemAPI.createFridgeItem(formData);
+    const currentFridge = this.state.currentFridge;
+    currentFridge.push(newFridgeItem);
+    this.setState({ currentFridge });
+    this.updateGeneralSearchTerms(this.state.currentFridge);
   };
 
   handleRemoveFoodItem = async (fridgeItemId) => {
-    const newFridge = await fridgeItemAPI.removeFridgeItem(fridgeItemId);
-    this.setState({ fridgeItems: newFridge });
-    this.updateGeneralSearchTerms(this.state.fridgeItems)
+    const deletedfridgeItem = await fridgeItemAPI.deleteFridgeItem(
+      fridgeItemId
+    );
+    const currentFridge = this.state.currentFridge;
+    currentFridge.forEach((fridgeItem, index) => {
+      if (fridgeItem._id == deletedfridgeItem._id) {
+        delete currentFridge[index];
+      }
+    });
+    this.setState({ currentFridge });
+    this.updateGeneralSearchTerms(this.state.currentFridge);
   };
 
   handleChange = async (e) => {
@@ -63,14 +69,17 @@ class Fridge extends Component {
     this.setState({ generalSearchTerms });
   };
 
-  componentDidMount() {
-    this.updateGeneralSearchTerms(this.state.fridgeItems)
+  async componentDidMount() {
+    const currentFridge = await fridgeItemAPI.getCurrentFridgeItems();
+    this.setState({ currentFridge });
+    this.updateGeneralSearchTerms(this.state.currentFridge);
   }
 
- 
+  // TODO: If current fridge is empty render some sort of useful message to the screen for the user.
 
   render() {
-    const { fridgeItems } = this.state;
+    const { currentFridge } = this.state;
+
     return (
       <>
         <Container>
@@ -90,8 +99,12 @@ class Fridge extends Component {
               </InputGroup>
             </FormGroup>
           </Form>
-
-          {fridgeItems.map((item, index) => (
+          {currentFridge ? (
+            <h1> stuff in your fridge</h1>
+          ) : (
+            <h2>nothing here!</h2>
+          )}
+          {currentFridge.map((item, index) => (
             <FridgeItem
               key={index}
               item={item}
