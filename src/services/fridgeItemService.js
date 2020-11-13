@@ -1,39 +1,39 @@
-import axios from 'axios';
 import tokenService from './tokenService';
-const BASE_URL = '/api/users/';
+const BASE_URL = '/api/fridgeItems/';
 
-export function favoriteRecipe(fridgeItemId) {
-  // return fetch(
-  //   `${BASE_URL}recipe/${fridgeItem}`,
-  //   {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //       Authorization: 'Bearer ' + tokenService.getToken(),
-  //     },
-  //     body: JSON.stringify(fridgeItem),
-  //   },
-  //   { mode: 'cors' }
-  // ).then((res) => res.json());
-  console.log(`fridge service function hit with ${fridgeItemId}` )
-}
-
-export function createFridgeItem(fridgeItem) {
+// TODO: create fridgeItem 
+export function createFridgeItem(data) {
   return fetch(
-    BASE_URL + 'add',
+    BASE_URL,
     {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         Authorization: 'Bearer ' + tokenService.getToken(),
       },
-      body: JSON.stringify(fridgeItem),
+      body: JSON.stringify(data),
     },
     { mode: 'cors' }
   ).then((res) => res.json());
 }
 
-export function removeFridgeItem(fridgeItemId) {
+// TODO: get one frideItem
+export function getOneFridgeItem(fridgeItemId) {
+  return fetch(
+    `${BASE_URL}${fridgeItemId}`,
+    {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + tokenService.getToken(),
+      },
+    },
+    { mode: 'cors' }
+  ).then((res) => res.json());
+}
+
+// TODO: update fridge item. This is not important yet since I am not adding the fridge item details features just yet.
+export function updateFridgeItem(fridgeItemId) {
   return fetch(
     `${BASE_URL}${fridgeItemId}`,
     {
@@ -46,6 +46,27 @@ export function removeFridgeItem(fridgeItemId) {
     { mode: 'cors' }
   ).then((res) => res.json());
 }
+
+// TODO: delete fridge item
+export function deleteFridgeItem(fridgeItemId) {
+  return fetch(
+    `${BASE_URL}${fridgeItemId}`,
+    {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + tokenService.getToken(),
+      },
+    },
+    { mode: 'cors' }
+  ).then((res) => res.json());
+}
+
+
+
+
+
+
 
 // TODO: Fix this issue with Edamam. We have an SEI resource on using a proxy for this problem.
 // export function searchApi(query) {
