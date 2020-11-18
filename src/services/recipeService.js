@@ -1,16 +1,16 @@
 import tokenService from './tokenService';
 const BASE_URL = '/api/recipes/';
 
-export function favoriteRecipe(fridgeItemId) {
+export function favoriteRecipe(data) {
   return fetch(
-    `${BASE_URL}${fridgeItemId}`,
+    `${BASE_URL}`,
     {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         Authorization: 'Bearer ' + tokenService.getToken(),
       },
-      body: JSON.stringify(fridgeItemId),
+      body: JSON.stringify(data),
     },
     { mode: 'cors' }
   ).then((res) => res.json());
@@ -28,7 +28,9 @@ export function getFavoriteRecipes() {
       },
     },
     { mode: 'cors' }
-  ).then((res) => res.json());
+  ).then((res) => {
+    res.json()
+  });
 }
 
 // TODO: favorite a recipe (create)
@@ -91,3 +93,24 @@ export function deleteFavoriteRecipe(recipeId) {
     { mode: 'cors' }
   ).then((res) => res.json());
 }
+
+export function searchApi(query) {
+  console.log(query);
+  const foodType = 'sandwich'
+  return fetch(
+    `https://recipepuppyproxy.herokuapp.com/api/?i=${query}&q=${foodType}&p=3`,
+    {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': 'http://localhost:3000',
+      },
+    },
+    { mode: 'cors' }
+  )
+    .then((res) => res.json())
+    .catch((error) => console.log(error));
+}
+
+
+

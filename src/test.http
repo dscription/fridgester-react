@@ -1,4 +1,9 @@
 
 
 
-GET http://www.recipepuppy.com/api/?i=onions,chicken,spinach&q=sandwich&p=3
+# GET http://www.recipepuppy.com/api/?i=onions,chicken,spinach&q=sandwich&p=3
+
+
+GET https://recipepuppyproxy.herokuapp.com/api/?i=onions,chicken,spinach&q=sandwich&p=3
+
+

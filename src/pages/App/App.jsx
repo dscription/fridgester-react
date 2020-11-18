@@ -11,13 +11,12 @@ import Fridge from '../Fridge/Fridge';
 import Landing from '../Landing/Landing';
 import Results from '../Results/Results';
 import './App.css';
-
-// TODO: Create a global context for the query because I dont want to be passing it down all over the place as props.
-// const QueryContext = React.createContext([])
+import * as recipeAPI from '../../services/recipeService';
 
 class App extends Component {
   state = {
     user: authService.getUser(),
+    results: [],
   };
 
   handleLogout = () => {
@@ -29,7 +28,10 @@ class App extends Component {
     this.setState({ user: authService.getUser() });
   };
 
-  
+  handleApiCall = async (data) => {
+    const results = await recipeAPI.searchApi(data);
+    this.setState({ results: results.results });
+  };
 
   render() {
     const { user } = this.state;
@@ -42,7 +44,7 @@ class App extends Component {
             path="/"
             render={() =>
               user ? (
-                <Fridge user={user}  />
+                <Fridge user={user} handleApiCall={this.handleApiCall} />
               ) : (
                 <Landing />
               )
@@ -76,12 +78,20 @@ class App extends Component {
           {/* Route to Recipe */}
           <Route exact path="/favorites" render={() => <Favorites />} />
           {/* Route to Shopping List */}
-          <Route exact path="/shopping-list" render={() => <ShoppingList />} />
+          <Route
+            exact
+            path="/shopping-list"
+            render={({ location }) => <ShoppingList location={location} />}
+          />
           <Route
             exact
             path="/results"
             render={({ history, location }) => (
-              <Results history={history} location={location} />
+              <Results
+                history={history}
+                location={location}
+                results={this.state.results}
+              />
             )}
           />
         </div>

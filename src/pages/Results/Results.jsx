@@ -1,38 +1,26 @@
-import React, { Component } from 'react';
-import * as fridgeItemAPI from '../../services/fridgeItemService';
+import React, { Component, useState, useEffect } from 'react';
 import styled from 'styled-components';
-import RecipeResult from '../../components/ResultItem/ResultItem';
+import RecipeResult from '../../components/RecipeResult/RecipeResult';
 
-class Results extends Component {
-  state = {
-    results: [],
-  };
+const Results = ({ results, location }) => {
+  const currentIngredients = location.state.generalSearchTerms;
 
-  async componentDidMount() {
-    const results = await fridgeItemAPI.searchApi(
-      this.props.location.state.generalSearchTerms
-    );
-    this.setState({ results: results });
-  }
+  const [recipes, setRecipes] = useState(results);
 
-  render() {
-    const { results } = this.state;
-    const { generalSearchTerms: fridgeItems } = this.props.location.state;
-
-    return (
-      <>
-        <Container>
-          {results.map((result) => (
-            <RecipeResult
-              details={result}
-              fridgeIngredients={fridgeItems}
-            />
-          ))}
-        </Container>
-      </>
-    );
-  }
-}
+  return (
+    <>
+      <Container>
+        <h1>results</h1>
+        {recipes.map((result) => (
+          <RecipeResult
+            details={result}
+            currentIngredients={currentIngredients}
+          />
+        ))}
+      </Container>
+    </>
+  );
+};
 
 export default Results;
 

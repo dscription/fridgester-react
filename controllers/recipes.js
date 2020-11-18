@@ -14,6 +14,7 @@ function index(req, res) {
   User.findById(req.user._id)
     .populate('recipes')
     .then((userObj) => {
+      console.log(userObj.recipes)
       res.json(userObj.recipes);
     })
     .catch((err) => {
@@ -29,7 +30,7 @@ function favorite(req, res) {
       user.recipes.push(recipe._id);
       user.save();
     });
-    res.status(200).json(recipe);
+    res.status(200).json(recipe._id);
   });
 }
 

@@ -69,8 +69,14 @@ class Fridge extends Component {
     this.setState({ generalSearchTerms });
   };
 
+  handleApiCall = () => {
+    this.props.handleApiCall(this.state.generalSearchTerms)
+  }
+
+
   async componentDidMount() {
     const currentFridge = await fridgeItemAPI.getCurrentFridgeItems();
+    const favoriteUrls = await 
     this.setState({ currentFridge });
     this.updateGeneralSearchTerms(this.state.currentFridge);
   }
@@ -120,7 +126,7 @@ class Fridge extends Component {
               },
             }}
           >
-            <Button>Search Recipes</Button>
+            <Button onClick={this.handleApiCall}>Search Recipes</Button>
           </Link>
         </Container>
       </>

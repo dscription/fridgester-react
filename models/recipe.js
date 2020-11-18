@@ -6,7 +6,8 @@ const recipeSchema = new Schema({
   name: {type: String, required: true},
   originalLink: {type: String, required: true},
   originalIngredients: {type: Array},
-  modifiedIngredients: {type: Array, default: []}
+  modifiedIngredients: {type: Array, default: []},
+  thumbnail: String
 })
 
 
