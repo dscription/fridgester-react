@@ -16,7 +16,6 @@ export function favoriteRecipe(data) {
   ).then((res) => res.json());
 }
 
-// TODO: get all favorite recipes
 export function getFavoriteRecipes() {
   return fetch(
     BASE_URL,
@@ -29,11 +28,10 @@ export function getFavoriteRecipes() {
     },
     { mode: 'cors' }
   ).then((res) => {
-    res.json()
+    res.json();
   });
 }
 
-// TODO: favorite a recipe (create)
 export function createFridgeItem(data) {
   return fetch(
     BASE_URL,
@@ -49,7 +47,6 @@ export function createFridgeItem(data) {
   ).then((res) => res.json());
 }
 
-// TODO: get one favorite recipe
 export function getOneFavoriteRecipe(recipeId) {
   return fetch(
     `${BASE_URL}${recipeId}`,
@@ -64,7 +61,6 @@ export function getOneFavoriteRecipe(recipeId) {
   ).then((res) => res.json());
 }
 
-// TODO: update a favorited recipe
 export function updateFavoriteRecipe(recipeId) {
   return fetch(
     `${BASE_URL}${recipeId}`,
@@ -79,7 +75,6 @@ export function updateFavoriteRecipe(recipeId) {
   ).then((res) => res.json());
 }
 
-// TODO: delete a favorite recipe
 export function deleteFavoriteRecipe(recipeId) {
   return fetch(
     `${BASE_URL}${recipeId}`,
@@ -96,7 +91,7 @@ export function deleteFavoriteRecipe(recipeId) {
 
 export function searchApi(query) {
   console.log(query);
-  const foodType = 'sandwich'
+  const foodType = 'sandwich';
   return fetch(
     `https://recipepuppyproxy.herokuapp.com/api/?i=${query}&q=${foodType}&p=3`,
     {
@@ -111,6 +106,3 @@ export function searchApi(query) {
     .then((res) => res.json())
     .catch((error) => console.log(error));
 }
-
-
-
