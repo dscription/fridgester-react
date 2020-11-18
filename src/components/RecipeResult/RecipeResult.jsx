@@ -5,7 +5,7 @@ import './RecipeResult.css';
 
 import { Card, CardImg, CardBody, CardTitle, Button } from 'reactstrap';
 
-const RecipeResult = ({ details, currentIngredients, index, isFavorite }) => {
+const RecipeResult = ({ details, currentIngredients }) => {
   const { title, href, ingredients, thumbnail, id } = details;
   const ingr = ingredients.split(', ');
 
@@ -31,6 +31,7 @@ const RecipeResult = ({ details, currentIngredients, index, isFavorite }) => {
             pathname: '/shopping-list',
             state: {
               ingredients: ingr,
+              currentIngredients: currentIngredients,
             },
           }}
         >
