@@ -9,7 +9,7 @@ import {
   InputGroupAddon,
 } from 'reactstrap';
 import FridgeItem from '../../components/FridgeItem/FridgeItem';
-import Container from '../../styledComponents/Container';
+import {Container} from '../../components/styled_components'
 import * as fridgeItemAPI from '../../services/fridgeItemService';
 
 class Fridge extends Component {

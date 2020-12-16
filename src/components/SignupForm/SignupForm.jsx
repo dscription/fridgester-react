@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import authService from '../../services/authService';
-import Container from '../../styledComponents/Container';
+import {Container} from '../styled_components'
 
 class SignupForm extends Component {
   state = {

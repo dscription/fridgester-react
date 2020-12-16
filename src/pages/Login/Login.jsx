@@ -1,7 +1,14 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import './Login.css';
 import authService from '../../services/authService';
+import {
+  Input,
+  InputGroup,
+  Label,
+  Button,
+  Main,
+  Form
+} from '../../components/styled_components';
 
 class LoginPage extends Component {
   state = {
@@ -32,12 +39,12 @@ class LoginPage extends Component {
   render() {
     const { email, pw } = this.state;
     return (
-      <main className="Login">
+      <Main>
         <h3>Log In</h3>
-        <form autoComplete="off" onSubmit={this.handleSubmit}>
-          <div className="input-group">
-            <label htmlFor="email">Email:</label>
-            <input
+        <Form autoComplete="off" onSubmit={this.handleSubmit}>
+          <InputGroup>
+            <Label htmlFor="email">Email:</Label>
+            <Input
               type="text"
               autoComplete="off"
               id="email"
@@ -45,10 +52,10 @@ class LoginPage extends Component {
               name="email"
               onChange={this.handleChange}
             />
-          </div>
-          <div className="input-group">
-            <label htmlFor="password">Password:</label>
-            <input
+          </InputGroup>
+          <InputGroup>
+            <Label htmlFor="password">Password:</Label>
+            <Input
               type="password"
               autoComplete="off"
               id="password"
@@ -56,13 +63,13 @@ class LoginPage extends Component {
               name="pw"
               onChange={this.handleChange}
             />
-          </div>
-          <button className="btn green">Log In</button>&nbsp;&nbsp;&nbsp;
+          </InputGroup>
+          <Button className="btn green">Log In</Button>&nbsp;&nbsp;&nbsp;
           <Link className="btn red" to="/">
             Cancel
           </Link>
-        </form>
-      </main>
+        </Form>
+      </Main>
     );
   }
 }
