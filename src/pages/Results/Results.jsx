@@ -11,7 +11,7 @@ const Results = ({ results, location }) => {
     <>
       <Container>
         <h1>results</h1>
-        {recipes.map((result) => (
+        {results.map((result) => (
           <RecipeResult
             details={result}
             currentIngredients={currentIngredients}
