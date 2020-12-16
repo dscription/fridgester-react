@@ -1,7 +1,14 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import authService from '../../services/authService';
-import {Container} from '../styled_components'
+import {
+  Container,
+  Input,
+  InputGroup,
+  Label,
+  Button,
+  Form,
+} from '../styled_components';
 
 class SignupForm extends Component {
   state = {
@@ -42,11 +49,10 @@ class SignupForm extends Component {
       <>
         <Container>
           <h3>Sign Up</h3>
-
-          <form autoComplete="off" onSubmit={this.handleSubmit}>
-            <div className="input-group">
-              <label htmlFor="name">Name:</label>
-              <input
+          <Form autoComplete="off" onSubmit={this.handleSubmit}>
+            <InputGroup>
+              <Label htmlFor="name">Name:</Label>
+              <Input
                 type="text"
                 autoComplete="off"
                 id="name"
@@ -54,10 +60,10 @@ class SignupForm extends Component {
                 name="name"
                 onChange={this.handleChange}
               />
-            </div>
-            <div className="input-group">
-              <label htmlFor="email">Email:</label>
-              <input
+            </InputGroup>
+            <InputGroup>
+              <Label htmlFor="email">Email:</Label>
+              <Input
                 type="text"
                 autoComplete="off"
                 id="email"
@@ -65,10 +71,10 @@ class SignupForm extends Component {
                 name="email"
                 onChange={this.handleChange}
               />
-            </div>
-            <div className="input-group">
-              <label htmlFor="password">Password:</label>
-              <input
+            </InputGroup>
+            <InputGroup>
+              <Label htmlFor="password">Password:</Label>
+              <Input
                 type="password"
                 autoComplete="off"
                 id="password"
@@ -76,10 +82,10 @@ class SignupForm extends Component {
                 name="password"
                 onChange={this.handleChange}
               />
-            </div>
-            <div className="input-group">
-              <label htmlFor="confirm">Confirm Password:</label>
-              <input
+            </InputGroup>
+            <InputGroup>
+              <Label htmlFor="confirm">Confirm Password:</Label>
+              <Input
                 type="password"
                 autoComplete="off"
                 id="confirm"
@@ -87,11 +93,11 @@ class SignupForm extends Component {
                 name="passwordConf"
                 onChange={this.handleChange}
               />
-            </div>
-            <button disabled={this.isFormInvalid()}>Sign Up /n</button>
+            </InputGroup>
+            <Button disabled={this.isFormInvalid()}>Sign Up /n</Button>
             &nbsp;&nbsp;&nbsp;&nbsp;
             <Link to="/">Cancel</Link>
-          </form>
+          </Form>
         </Container>
       </>
     );

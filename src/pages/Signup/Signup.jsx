@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import SignupForm from "../../components/SignupForm/SignupForm";
-import "./Signup.css";
+import {Main} from '../../components/styled_components'
+
 
 class Signup extends Component {
   state = {
@@ -13,10 +14,10 @@ class Signup extends Component {
 
   render() {
     return (
-      <main>
+      <Main>
         <SignupForm {...this.props} updateMessage={this.updateMessage} />
         <p>{this.state.message}</p>
-      </main>
+      </Main>
     );
   }
 }
