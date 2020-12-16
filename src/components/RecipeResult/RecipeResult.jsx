@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import './RecipeResult.css';
@@ -6,7 +6,7 @@ import './RecipeResult.css';
 import { Card, CardImg, CardBody, CardTitle, Button } from 'reactstrap';
 
 const RecipeResult = ({ details, currentIngredients }) => {
-  const { title, href, ingredients, thumbnail, id } = details;
+  const { title, ingredients, thumbnail } = details;
   const ingr = ingredients.split(', ');
 
   return (

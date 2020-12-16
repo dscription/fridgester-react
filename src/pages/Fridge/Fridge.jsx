@@ -44,7 +44,7 @@ class Fridge extends Component {
     );
     const currentFridge = this.state.currentFridge;
     currentFridge.forEach((fridgeItem, index) => {
-      if (fridgeItem._id == deletedfridgeItem._id) {
+      if (fridgeItem._id === deletedfridgeItem._id) {
         delete currentFridge[index];
       }
     });
@@ -76,7 +76,6 @@ class Fridge extends Component {
 
   async componentDidMount() {
     const currentFridge = await fridgeItemAPI.getCurrentFridgeItems();
-    const favoriteUrls = await 
     this.setState({ currentFridge });
     this.updateGeneralSearchTerms(this.state.currentFridge);
   }
@@ -89,7 +88,7 @@ class Fridge extends Component {
     return (
       <>
         <Container>
-          <h1>This is your fridge.</h1>
+          <h1>Fridge</h1>
           <Form onSubmit={this.handleAddFoodItem}>
             <FormGroup>
               <InputGroup>
@@ -105,10 +104,10 @@ class Fridge extends Component {
               </InputGroup>
             </FormGroup>
           </Form>
-          {currentFridge ? (
-            <h1> stuff in your fridge</h1>
+          {currentFridge.length > 0 ? (
+            <h1>  </h1>
           ) : (
-            <h2>nothing here!</h2>
+            <h2>Your Fridge Is Currently Empty</h2>
           )}
           {currentFridge.map((item, index) => (
             <FridgeItem

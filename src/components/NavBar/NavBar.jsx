@@ -25,7 +25,7 @@ const NavBar = ({ user, handleLogout }) => {
             <Nav className="mr-auto" navbar>
               <NavItem>
                 <NavLink id="navItem" href="/">
-                  Welcome, {user.name}
+                  Your Fridge
                 </NavLink>
               </NavItem>
               <NavItem>
