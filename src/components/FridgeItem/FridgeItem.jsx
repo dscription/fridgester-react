@@ -1,6 +1,7 @@
 import React from 'react';
-import styled from 'styled-components';
-import { Button } from 'reactstrap';
+import {ItemCard, Button} from '../styled_components'
+
+
 
 const FridgeItem = ({ item, handleRemoveFoodItem }) => {
 
@@ -23,18 +24,14 @@ const FridgeItem = ({ item, handleRemoveFoodItem }) => {
   } = item;
 
   return (
-    <Card>
+    <ItemCard>
       <h1>{name}</h1>
       <Button onClick={handleClick} value={_id} color="danger">
         -
       </Button>
-    </Card>
+    </ItemCard>
   );
 };
 
-const Card = styled.div`
-  margin: 5px;
-  border: solid 3px black;
-`;
 
 export default FridgeItem;

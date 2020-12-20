@@ -1,16 +1,14 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
+import {Container} from '../../components/styled_components'
 import RecipeResult from '../../components/RecipeResult/RecipeResult';
 
 const Results = ({ results, location }) => {
   const currentIngredients = location.state.generalSearchTerms;
 
-  const [recipes, setRecipes] = useState(results);
-
   return (
     <>
       <Container>
-        <h1>results</h1>
+        <h1>Recipe Results:</h1>
         {results.map((result) => (
           <RecipeResult
             details={result}
@@ -24,7 +22,4 @@ const Results = ({ results, location }) => {
 
 export default Results;
 
-const Container = styled.div`
-  border: solid black 1px;
-  padding: 5px;
-`;
+

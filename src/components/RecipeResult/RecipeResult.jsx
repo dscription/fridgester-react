@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import styled from 'styled-components';
+import { Container, Card, CardBody, Button } from '../styled_components';
 import './RecipeResult.css';
 
-import { Card, CardImg, CardBody, CardTitle, Button } from 'reactstrap';
+import { CardImg, CardTitle } from 'reactstrap';
 
 const RecipeResult = ({ details, currentIngredients }) => {
   const { title, ingredients, thumbnail } = details;
@@ -14,16 +14,17 @@ const RecipeResult = ({ details, currentIngredients }) => {
       <Card>
         <CardImg top width="50%" src={thumbnail} alt="Image of Recipe" />
         <CardBody>
-          <CardTitle>{title}</CardTitle>
-          <ul>
+          <h2>{title}</h2>
+          <p>
+            <strong>Ingredients: </strong>
             {ingr.map((ingredient) =>
               currentIngredients.includes(ingredient) ? (
-                <li className="red">{ingredient}</li>
+                <span className="red">{ingredient}, </span>
               ) : (
-                <li>{ingredient}</li>
+                <span>{ingredient}, </span>
               )
             )}
-          </ul>
+          </p>
         </CardBody>
 
         <Link
@@ -35,15 +36,11 @@ const RecipeResult = ({ details, currentIngredients }) => {
             },
           }}
         >
-          <Button color="primary">Shopping List</Button>
+          <Button>Shopping List</Button>
         </Link>
       </Card>
     </Container>
   );
 };
-
-const Container = styled.div`
-  margin: 10px 5px;
-`;
 
 export default RecipeResult;
