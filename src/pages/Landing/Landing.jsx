@@ -5,7 +5,7 @@ const Landing = () => {
   // TODO: Header IMG
   // TODO: Header Text
   // TODO: Signup/ Login CTA
-  return ( <h1>This is the landing page.</h1> );
+  return ( <h1>Welcome to Fridgester. Please signup or login.</h1> );
 }
  
 export default Landing;

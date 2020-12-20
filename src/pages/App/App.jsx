@@ -12,6 +12,8 @@ import Landing from '../Landing/Landing';
 import Results from '../Results/Results';
 import './App.css';
 import * as recipeAPI from '../../services/recipeService';
+import {Container} from '../../components/styled_components'
+
 
 class App extends Component {
   state = {
@@ -38,7 +40,7 @@ class App extends Component {
     return (
       <>
         <NavBar user={user} handleLogout={this.handleLogout} />
-        <div id="container-main">
+        <Container>
           <Route
             exact
             path="/"
@@ -94,7 +96,7 @@ class App extends Component {
               />
             )}
           />
-        </div>
+        </Container>
       </>
     );
   }
