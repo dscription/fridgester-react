@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import {
-  Form,
-  FormGroup,
-  Input,
-  InputGroup,
-  InputGroupAddon,
-} from 'reactstrap';
+
 import FridgeItem from '../../components/FridgeItem/FridgeItem';
 import * as fridgeItemAPI from '../../services/fridgeItemService';
-import { Button } from '@material-ui/core';
+import {
+  Button,
+  FormControl,
+  TextField,
+  FormLabel,
+  Input,
+  InputLabel,
+  FormHelperText,
+} from '@material-ui/core';
 
 class Fridge extends Component {
   state = {
@@ -86,23 +88,19 @@ class Fridge extends Component {
     return (
       <>
         <h1>Fridge</h1>
-        <Form onSubmit={this.handleAddFoodItem}>
-          <FormGroup>
-            <InputGroup>
-              <Input
-                id="search"
-                name="name"
-                onChange={this.handleChange}
-                placeholder="Add Food Item"
-              />
-              <InputGroupAddon addonType="append">
-                <Button variant="contained" color="primary" type="submit">
-                  Add Food
-                </Button>
-              </InputGroupAddon>
-            </InputGroup>
-          </FormGroup>
-        </Form>
+        <form onSubmit={this.handleAddFoodItem}>
+          <TextField
+            id="search"
+            label="Add food to fridge"
+            variant="standard"
+            // variant="filled"
+            onChange={this.handleChange}
+          />
+
+          <Button variant="contained" color="primary" type="submit">
+            Add Food
+          </Button>
+        </form>
         {currentFridge.map((item, index) => (
           <FridgeItem
             key={index}
