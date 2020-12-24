@@ -1,9 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Container, Card, CardBody, Button } from '../styled_components';
+import { Container, Card, CardBody, Button, CardImage } from '../styled_components';
 import './RecipeResult.css';
 
-import { CardImg, CardTitle } from 'reactstrap';
 
 const RecipeResult = ({ details, currentIngredients }) => {
   const { title, ingredients, thumbnail } = details;
@@ -12,7 +11,7 @@ const RecipeResult = ({ details, currentIngredients }) => {
   return (
     <Container>
       <Card>
-        <CardImg top width="50%" src={thumbnail} alt="Image of Recipe" />
+        <CardImage src={thumbnail} alt="Recipe" />
         <CardBody>
           <h2>{title}</h2>
           <p>
@@ -36,7 +35,7 @@ const RecipeResult = ({ details, currentIngredients }) => {
             },
           }}
         >
-          <Button>Shopping List</Button>
+          <Button color="green">Shopping List</Button>
         </Link>
       </Card>
     </Container>

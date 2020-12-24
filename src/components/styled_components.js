@@ -42,9 +42,9 @@ export const CardBody = styled.div`
 `
 
 export const Button = styled.button`
-  width: 50px;
+  width: 100px;
   border-radius: 5px;
-  background-color: red;
+  background-color: ${props => props.color };
 `;
 
 export const Main = styled.main`
@@ -54,5 +54,9 @@ export const Main = styled.main`
   align-items: center;
   margin-bottom: 50px;
 `;
+
+export const CardImage = styled.img`
+  width: 80%;
+`
 
 export const Form = styled.form``;

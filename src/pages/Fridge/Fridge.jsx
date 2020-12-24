@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import {
-  Button,
   Form,
   FormGroup,
   Input,
@@ -9,7 +8,7 @@ import {
   InputGroupAddon,
 } from 'reactstrap';
 import FridgeItem from '../../components/FridgeItem/FridgeItem';
-import {Container} from '../../components/styled_components'
+import { Container, Button } from '../../components/styled_components';
 import * as fridgeItemAPI from '../../services/fridgeItemService';
 
 class Fridge extends Component {
@@ -70,9 +69,8 @@ class Fridge extends Component {
   };
 
   handleApiCall = () => {
-    this.props.handleApiCall(this.state.generalSearchTerms)
-  }
-
+    this.props.handleApiCall(this.state.generalSearchTerms);
+  };
 
   async componentDidMount() {
     const currentFridge = await fridgeItemAPI.getCurrentFridgeItems();
@@ -92,23 +90,18 @@ class Fridge extends Component {
           <Form onSubmit={this.handleAddFoodItem}>
             <FormGroup>
               <InputGroup>
-                <InputGroupAddon addonType="prepend">
-                  <Button type="submit">Add Food</Button>
-                </InputGroupAddon>
                 <Input
                   id="search"
                   name="name"
                   onChange={this.handleChange}
-                  placeholder="Search for item."
+                  placeholder="Add Food Item"
                 />
+                <InputGroupAddon addonType="append">
+                  <Button type="submit">Add Food</Button>
+                </InputGroupAddon>
               </InputGroup>
             </FormGroup>
           </Form>
-          {currentFridge.length > 0 ? (
-            <h1>  </h1>
-          ) : (
-            <h2>Your Fridge Is Currently Empty</h2>
-          )}
           {currentFridge.map((item, index) => (
             <FridgeItem
               key={index}
@@ -125,7 +118,9 @@ class Fridge extends Component {
               },
             }}
           >
-            <Button onClick={this.handleApiCall}>Search Recipes</Button>
+            <Button color="green" onClick={this.handleApiCall}>
+              Search Recipes
+            </Button>
           </Link>
         </Container>
       </>

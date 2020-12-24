@@ -26,8 +26,8 @@ const FridgeItem = ({ item, handleRemoveFoodItem }) => {
   return (
     <ItemCard>
       <h1>{name}</h1>
-      <Button onClick={handleClick} value={_id} color="danger">
-        -
+      <Button color="red" onClick={handleClick} value={_id}>
+        Remove
       </Button>
     </ItemCard>
   );
