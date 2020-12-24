@@ -11,6 +11,7 @@ import {
   Input,
   InputLabel,
   FormHelperText,
+  Container
 } from '@material-ui/core';
 
 class Fridge extends Component {

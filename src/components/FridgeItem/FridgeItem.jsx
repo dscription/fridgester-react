@@ -1,5 +1,6 @@
 import React from 'react';
-import {ItemCard, Button} from '../styled_components'
+import {ItemCard} from '../styled_components'
+import {Button} from '@material-ui/core'
 
 
 
@@ -26,7 +27,7 @@ const FridgeItem = ({ item, handleRemoveFoodItem }) => {
   return (
     <ItemCard>
       <h1>{name}</h1>
-      <Button color="red" onClick={handleClick} value={_id}>
+      <Button variant="contained" color="secondary" onClick={handleClick} value={_id}>
         Remove
       </Button>
     </ItemCard>
