@@ -1,38 +1,33 @@
 import React from 'react';
-import {ItemCard} from '../styled_components'
-import {Button} from '@material-ui/core'
-
-
+import { Button, Card, CardContent, CardActions } from '@material-ui/core';
 
 const FridgeItem = ({ item, handleRemoveFoodItem }) => {
-
   const handleClick = (e) => {
     // e.preventDefault();
     const fridgeItemId = e.target.value;
-    console.log(fridgeItemId)
+    console.log(fridgeItemId);
     handleRemoveFoodItem(fridgeItemId);
   };
 
-  const {
-    _id,
-    name,
-    // expiration,
-    // isPerishable,
-    // isExpired,
-    // image,
-    // dateAdded,
-    // dateRemoved,
-  } = item;
+  const { _id, name } = item;
 
   return (
-    <ItemCard>
-      <h1>{name}</h1>
-      <Button variant="contained" color="secondary" onClick={handleClick} value={_id}>
+    <Card variant="outlined">
+      <CardContent>
+        <h3>{name}</h3>
+      </CardContent>
+      <Button
+        variant="contained"
+        color="secondary"
+        size="small"
+        onClick={handleClick}
+        value={_id}
+      >
         Remove
       </Button>
-    </ItemCard>
+      <CardActions></CardActions>
+    </Card>
   );
 };
-
 
 export default FridgeItem;
