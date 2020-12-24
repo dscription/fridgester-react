@@ -2,15 +2,7 @@ import React from 'react';
 import { Button, Card, CardContent, CardActions } from '@material-ui/core';
 
 const FridgeItem = ({ item, handleRemoveFoodItem }) => {
-  const handleClick = (e) => {
-    // e.preventDefault();
-    const fridgeItemId = e.target.value;
-    console.log(fridgeItemId);
-    handleRemoveFoodItem(fridgeItemId);
-  };
-
   const { _id, name } = item;
-
   return (
     <Card variant="outlined">
       <CardContent>
@@ -20,8 +12,7 @@ const FridgeItem = ({ item, handleRemoveFoodItem }) => {
         variant="contained"
         color="secondary"
         size="small"
-        onClick={handleClick}
-        value={_id}
+        onClick={() => handleRemoveFoodItem(_id)}
       >
         Remove
       </Button>

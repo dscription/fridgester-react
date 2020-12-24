@@ -5,13 +5,7 @@ import FridgeItem from '../../components/FridgeItem/FridgeItem';
 import * as fridgeItemAPI from '../../services/fridgeItemService';
 import {
   Button,
-  FormControl,
   TextField,
-  FormLabel,
-  Input,
-  InputLabel,
-  FormHelperText,
-  Container
 } from '@material-ui/core';
 
 class Fridge extends Component {
@@ -97,7 +91,6 @@ class Fridge extends Component {
             // variant="filled"
             onChange={this.handleChange}
           />
-
           <Button variant="contained" color="primary" type="submit">
             Add Food
           </Button>
