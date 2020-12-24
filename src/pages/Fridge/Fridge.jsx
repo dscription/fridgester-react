@@ -85,44 +85,42 @@ class Fridge extends Component {
 
     return (
       <>
-        <Container>
-          <h1>Fridge</h1>
-          <Form onSubmit={this.handleAddFoodItem}>
-            <FormGroup>
-              <InputGroup>
-                <Input
-                  id="search"
-                  name="name"
-                  onChange={this.handleChange}
-                  placeholder="Add Food Item"
-                />
-                <InputGroupAddon addonType="append">
-                  <Button type="submit">Add Food</Button>
-                </InputGroupAddon>
-              </InputGroup>
-            </FormGroup>
-          </Form>
-          {currentFridge.map((item, index) => (
-            <FridgeItem
-              key={index}
-              item={item}
-              handleRemoveFoodItem={this.handleRemoveFoodItem}
-            />
-          ))}
-          <Link
-            to={{
-              pathname: '/results',
-              state: {
-                generalSearchTerms: this.state.generalSearchTerms,
-                user: this.props.user,
-              },
-            }}
-          >
-            <Button color="green" onClick={this.handleApiCall}>
-              Search Recipes
-            </Button>
-          </Link>
-        </Container>
+        <h1>Fridge</h1>
+        <Form onSubmit={this.handleAddFoodItem}>
+          <FormGroup>
+            <InputGroup>
+              <Input
+                id="search"
+                name="name"
+                onChange={this.handleChange}
+                placeholder="Add Food Item"
+              />
+              <InputGroupAddon addonType="append">
+                <Button type="submit">Add Food</Button>
+              </InputGroupAddon>
+            </InputGroup>
+          </FormGroup>
+        </Form>
+        {currentFridge.map((item, index) => (
+          <FridgeItem
+            key={index}
+            item={item}
+            handleRemoveFoodItem={this.handleRemoveFoodItem}
+          />
+        ))}
+        <Link
+          to={{
+            pathname: '/results',
+            state: {
+              generalSearchTerms: this.state.generalSearchTerms,
+              user: this.props.user,
+            },
+          }}
+        >
+          <Button color="green" onClick={this.handleApiCall}>
+            Search Recipes
+          </Button>
+        </Link>
       </>
     );
   }
