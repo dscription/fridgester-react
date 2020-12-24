@@ -8,8 +8,8 @@ import {
   InputGroupAddon,
 } from 'reactstrap';
 import FridgeItem from '../../components/FridgeItem/FridgeItem';
-import { Container, Button } from '../../components/styled_components';
 import * as fridgeItemAPI from '../../services/fridgeItemService';
+import {Button} from '@material-ui/core'
 
 class Fridge extends Component {
   state = {
@@ -96,7 +96,7 @@ class Fridge extends Component {
                 placeholder="Add Food Item"
               />
               <InputGroupAddon addonType="append">
-                <Button type="submit">Add Food</Button>
+                <Button variant="contained" color="primary" type="submit">Add Food</Button>
               </InputGroupAddon>
             </InputGroup>
           </FormGroup>
@@ -117,7 +117,7 @@ class Fridge extends Component {
             },
           }}
         >
-          <Button color="green" onClick={this.handleApiCall}>
+          <Button variant="contained" color="primary" onClick={this.handleApiCall}>
             Search Recipes
           </Button>
         </Link>
