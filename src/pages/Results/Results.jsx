@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import {Container} from '../../components/styled_components'
+import React from 'react';
 import RecipeResult from '../../components/RecipeResult/RecipeResult';
 
 const Results = ({ results, location }) => {
@@ -7,19 +6,15 @@ const Results = ({ results, location }) => {
 
   return (
     <>
-      <Container>
-        <h1>Recipe Results:</h1>
-        {results.map((result) => (
-          <RecipeResult
-            details={result}
-            currentIngredients={currentIngredients}
-          />
-        ))}
-      </Container>
+      <h1>Recipe Results:</h1>
+      {results.map((result) => (
+        <RecipeResult
+          details={result}
+          currentIngredients={currentIngredients}
+        />
+      ))}
     </>
   );
 };
 
 export default Results;
-
-

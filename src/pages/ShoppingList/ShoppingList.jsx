@@ -1,12 +1,19 @@
 import React, { Component } from 'react';
-import { Input, Button } from 'reactstrap';
-import styled from 'styled-components';
+import {
+  Button,
+  Card,
+  CardContent,
+  CardActions,
+  Checkbox,
+  CardHeader,
+  FormControl,
+  FormControlLabel,
+} from '@material-ui/core';
 
 class ShoppingList extends Component {
   state = { newFridgeItems: [] };
 
   handleCheckInput = (e) => {
-    // e.preventDefault();
     const newFridgeItem = e.target.value;
 
     if (this.state.newFridgeItems.includes(newFridgeItem)) {
@@ -23,10 +30,11 @@ class ShoppingList extends Component {
     }
   };
 
-  // TODO: Once use clicks done shopping all items in state object will be added to the users fridge.
+
   handleDoneShopping = () => {
     console.log('done');
-    // Call a fridgeService function that will take all the items from state and pass them to the controller function to create fridge items.
+    // TODO: Call controller to create new fridge items
+    // TODO: Set new fridge items to state.
   };
 
   render() {
@@ -34,47 +42,44 @@ class ShoppingList extends Component {
     const { ingredients } = state;
     const { currentIngredients } = state;
     return (
-      <>
-        <Container>
-          <h1>Shopping List</h1>
-          <ul>
+      <Card>
+        <CardHeader title="Shopping List" />
+        <CardContent>
+          <FormControl>
             {ingredients.map((ingredient) =>
               currentIngredients.includes(ingredient) ? (
-                <li>
-                  <Input
-                    type="checkbox"
-                    aria-label={`checkbox input for $(ingredient)`}
-                    disabled
-                  />
-                  {ingredient}
-                </li>
+                <FormControlLabel
+                  value={ingredient}
+                  control={<Checkbox color="pirmary" />}
+                  label={ingredient}
+                  labelPlacement="end"
+                  checked={true}
+                />
               ) : (
-                <li>
-                  <Input
-                    type="checkbox"
-                    aria-label={`checkbox input for $(ingredient)`}
-                    value={ingredient}
-                    onChange={this.handleCheckInput}
-                  />
-                  {ingredient}
-                </li>
+                <FormControlLabel
+                  value={ingredient}
+                  control={<Checkbox color="pirmary" />}
+                  label={ingredient}
+                  labelPlacement="end"
+                  onClick={this.handleCheckInput}
+                />
               )
             )}
-          </ul>
-          <Button onClick={this.handleDoneShopping} color="success">
+          </FormControl>
+        </CardContent>
+        <CardActions>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={this.handleDoneShopping}
+          >
             Done Shopping
           </Button>
-        </Container>
-      </>
+        </CardActions>
+      </Card>
     );
   }
 }
 
 export default ShoppingList;
 
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  border: solid black 1px;
-  padding: 5px;
-`;

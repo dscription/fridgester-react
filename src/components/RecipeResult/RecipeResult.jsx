@@ -1,31 +1,49 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Container, Card, CardBody, Button, CardImage } from '../styled_components';
+import { makeStyles } from '@material-ui/core/styles';
+import {
+  Button,
+  Card,
+  CardHeader,
+  CardMedia,
+  CardContent,
+  CardActions,
+  Typography,
+} from '@material-ui/core';
 import './RecipeResult.css';
 
+const useStyles = makeStyles((theme) => ({
+  root: {
+    maxWidth: 345,
+  },
+}));
 
 const RecipeResult = ({ details, currentIngredients }) => {
+  const classes = useStyles();
   const { title, ingredients, thumbnail } = details;
   const ingr = ingredients.split(', ');
 
   return (
-    <Container>
-      <Card>
-        <CardImage src={thumbnail} alt="Recipe" />
-        <CardBody>
-          <h2>{title}</h2>
-          <p>
-            <strong>Ingredients: </strong>
-            {ingr.map((ingredient) =>
-              currentIngredients.includes(ingredient) ? (
-                <span className="red">{ingredient}, </span>
-              ) : (
-                <span>{ingredient}, </span>
-              )
-            )}
-          </p>
-        </CardBody>
-
+    <Card className={classes.root}>
+      <CardHeader title={title} />
+      <CardMedia
+        component="img"
+        src={thumbnail}
+        title={title}
+      />
+      <CardContent>
+        <Typography variant="body2" color="textSecondary" component="p">
+          Ingredients:
+          {ingr.map((ingredient) =>
+            currentIngredients.includes(ingredient) ? (
+              <span className="red">{ingredient}, </span>
+            ) : (
+              <span>{ingredient}, </span>
+            )
+          )}
+        </Typography>
+      </CardContent>
+      <CardActions>
         <Link
           to={{
             pathname: '/shopping-list',
@@ -35,10 +53,10 @@ const RecipeResult = ({ details, currentIngredients }) => {
             },
           }}
         >
-          <Button color="green">Shopping List</Button>
+          <Button variant="contained" color="primary">Create Shopping List</Button>
         </Link>
-      </Card>
-    </Container>
+      </CardActions>
+    </Card>
   );
 };
 
