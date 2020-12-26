@@ -108,7 +108,7 @@ class Fridge extends Component {
           <Button
             variant="contained"
             color="primary"
-            disabled={currentFridge.length > 0 ? '' : 'disabled'}
+            disabled={currentFridge.length > 0 ? '' : true}
             onClick={this.handleApiCall}
           >
             Search Recipes

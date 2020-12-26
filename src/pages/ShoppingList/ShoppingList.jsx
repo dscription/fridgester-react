@@ -35,11 +35,7 @@ class ShoppingList extends Component {
 
   handleDoneShopping = async () => {
     const {newFridgeItems} = this.state
-    console.log('done');
-    // TODO: Call controller to create new fridge items
-    // TODO: Set new fridge items to state.
     const createdFridgeItems = await fridgeItemAPI.createFridgeItem(newFridgeItems)
-    console.log(createdFridgeItems)
   };
 
   render() {
@@ -48,7 +44,7 @@ class ShoppingList extends Component {
     const { currentIngredients } = state;
     return (
       <Card>
-        <CardHeader title="Shopping List" />
+        <CardHeader title="Shopping List" align="center"  />
         <CardContent>
           <FormControl>
             {ingredients.map((ingredient) =>
@@ -72,7 +68,7 @@ class ShoppingList extends Component {
             )}
           </FormControl>
         </CardContent>
-        <CardActions>
+        <CardActions style={{justifyContent: 'center'}}>
           <Button
             variant="contained"
             color="primary"

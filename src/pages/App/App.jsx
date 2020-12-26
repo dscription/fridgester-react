@@ -40,7 +40,7 @@ class App extends Component {
     return (
       <>
         <NavBar user={user} handleLogout={this.handleLogout} />
-        <Container>
+        <Container maxWidth="sm" >
           <Route
             exact
             path="/"
