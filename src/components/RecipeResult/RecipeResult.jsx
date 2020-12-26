@@ -10,12 +10,18 @@ import {
   CardActions,
   Typography,
 } from '@material-ui/core';
-import './RecipeResult.css';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 345,
+    margin: '10px auto',
   },
+  red: {
+    color: 'red',
+  },
+  black: {
+    color: 'black'
+  }
 }));
 
 const RecipeResult = ({ details, currentIngredients }) => {
@@ -26,24 +32,18 @@ const RecipeResult = ({ details, currentIngredients }) => {
   return (
     <Card className={classes.root}>
       <CardHeader title={title} />
-      <CardMedia
-        component="img"
-        src={thumbnail}
-        title={title}
-      />
+      <CardMedia component="img" src={thumbnail} title={title} />
       <CardContent>
-        <Typography variant="body2" color="textSecondary" component="p">
+        <Typography variant="h4" component="p">
           Ingredients:
-          {ingr.map((ingredient) =>
-            currentIngredients.includes(ingredient) ? (
-              <span className="red">{ingredient}, </span>
-            ) : (
-              <span>{ingredient}, </span>
-            )
-          )}
         </Typography>
+        {ingr.map((ingredient) =>(
+        <Typography variant="h5" component="span" className={currentIngredients.includes(ingredient) ? classes.red : classes.black}> {ingredient},</Typography>
+          
+        ))}
       </CardContent>
-      <CardActions>
+      
+      <CardActions style={{justifyContent:'center'}}>
         <Link
           to={{
             pathname: '/shopping-list',
@@ -53,7 +53,9 @@ const RecipeResult = ({ details, currentIngredients }) => {
             },
           }}
         >
-          <Button variant="contained" color="primary">Create Shopping List</Button>
+          <Button variant="contained" color="primary">
+            Create Shopping List
+          </Button>
         </Link>
       </CardActions>
     </Card>

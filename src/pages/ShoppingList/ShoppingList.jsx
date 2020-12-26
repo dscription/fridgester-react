@@ -8,9 +8,9 @@ import {
   CardHeader,
   FormControl,
   FormControlLabel,
+  Typography,
 } from '@material-ui/core';
 import * as fridgeItemAPI from '../../services/fridgeItemService';
-
 
 class ShoppingList extends Component {
   state = { newFridgeItems: [] };
@@ -27,15 +27,16 @@ class ShoppingList extends Component {
       this.setState({ newFridgeItems });
     } else {
       const newFridgeItems = [...this.state.newFridgeItems];
-      newFridgeItems.push({name:newFridgeItem});
+      newFridgeItems.push({ name: newFridgeItem });
       this.setState({ newFridgeItems });
     }
   };
 
-
   handleDoneShopping = async () => {
-    const {newFridgeItems} = this.state
-    const createdFridgeItems = await fridgeItemAPI.createFridgeItem(newFridgeItems)
+    const { newFridgeItems } = this.state;
+    const createdFridgeItems = await fridgeItemAPI.createFridgeItem(
+      newFridgeItems
+    );
   };
 
   render() {
@@ -44,23 +45,25 @@ class ShoppingList extends Component {
     const { currentIngredients } = state;
     return (
       <Card>
-        <CardHeader title="Shopping List" align="center"  />
-        <CardContent>
+        <Typography variant="32" component="h1" align="center">
+          Shopping List
+        </Typography>
+        <CardContent align="center">
           <FormControl>
             {ingredients.map((ingredient) =>
               currentIngredients.includes(ingredient) ? (
                 <FormControlLabel
                   value={ingredient}
                   control={<Checkbox color="pirmary" />}
-                  label={ingredient}
+                  label={<Typography variant="h4">{ingredient}</Typography>}
                   labelPlacement="end"
                   checked={true}
                 />
               ) : (
                 <FormControlLabel
                   value={ingredient}
-                  control={<Checkbox color="pirmary" />}
-                  label={ingredient}
+                  control={<Checkbox color="pirmary"  />}
+                  label={<Typography variant="h4">{ingredient}</Typography>}
                   labelPlacement="end"
                   onClick={this.handleCheckInput}
                 />
@@ -68,7 +71,7 @@ class ShoppingList extends Component {
             )}
           </FormControl>
         </CardContent>
-        <CardActions style={{justifyContent: 'center'}}>
+        <CardActions style={{ justifyContent: 'center' }}>
           <Button
             variant="contained"
             color="primary"
@@ -83,4 +86,3 @@ class ShoppingList extends Component {
 }
 
 export default ShoppingList;
-
