@@ -9,6 +9,8 @@ import {
   FormControl,
   FormControlLabel,
 } from '@material-ui/core';
+import * as fridgeItemAPI from '../../services/fridgeItemService';
+
 
 class ShoppingList extends Component {
   state = { newFridgeItems: [] };
@@ -25,16 +27,19 @@ class ShoppingList extends Component {
       this.setState({ newFridgeItems });
     } else {
       const newFridgeItems = [...this.state.newFridgeItems];
-      newFridgeItems.push(newFridgeItem);
+      newFridgeItems.push({name:newFridgeItem});
       this.setState({ newFridgeItems });
     }
   };
 
 
-  handleDoneShopping = () => {
+  handleDoneShopping = async () => {
+    const {newFridgeItems} = this.state
     console.log('done');
     // TODO: Call controller to create new fridge items
     // TODO: Set new fridge items to state.
+    const createdFridgeItems = await fridgeItemAPI.createFridgeItem(newFridgeItems)
+    console.log(createdFridgeItems)
   };
 
   render() {

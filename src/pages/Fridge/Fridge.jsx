@@ -13,12 +13,6 @@ class Fridge extends Component {
     value: '',
     formData: {
       name: '',
-      expiration: '',
-      isPerishable: null,
-      isExpired: null,
-      image: '',
-      dateAdded: '',
-      dateRemoved: '',
     },
     currentFridge: [],
     generalSearchTerms: [],
@@ -27,9 +21,9 @@ class Fridge extends Component {
   handleAddFoodItem = async (e) => {
     e.preventDefault();
     const { formData } = this.state;
-    const newFridgeItem = await fridgeItemAPI.createFridgeItem(formData);
+    const newFridgeItem = await fridgeItemAPI.createFridgeItem([formData]);
     const currentFridge = this.state.currentFridge;
-    currentFridge.push(newFridgeItem);
+    currentFridge.push(newFridgeItem[0]);
     this.setState({ currentFridge });
     this.updateGeneralSearchTerms(this.state.currentFridge);
   };
