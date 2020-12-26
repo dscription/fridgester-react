@@ -21,13 +21,6 @@ function index(req, res) {
 }
 
 function create(req, res) {
-  // FridgeItem.create(req.body).then((fridgeItem) => {
-  //   User.findById(req.user._id).then((user) => {
-  //     user.currentFridge.push(fridgeItem._id);
-  //     user.save();
-  //   });
-  //   res.status(200).json(fridgeItem);
-  // });
   FridgeItem.create(req.body).then((createdFridgeItems) => {
     createdFridgeItems.forEach((createdFridgeItem) => {
       User.findById(req.user._id).then((user) => {

@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-
 import FridgeItem from '../../components/FridgeItem/FridgeItem';
-import * as fridgeItemAPI from '../../services/fridgeItemService';
 import {
   Button,
   TextField,
+  Card,
+  CardContent,
+  CardActions,
+  Typography
 } from '@material-ui/core';
+import * as fridgeItemAPI from '../../services/fridgeItemService';
 
 class Fridge extends Component {
   state = {
@@ -76,18 +79,27 @@ class Fridge extends Component {
 
     return (
       <>
-        <h1>Fridge</h1>
+        <Typography variant="h3" component="h1" align="center">Fridge</Typography>
         <form onSubmit={this.handleAddFoodItem}>
-          <TextField
-            id="search"
-            label="Add food to fridge"
-            variant="standard"
-            // variant="filled"
-            onChange={this.handleChange}
-          />
-          <Button variant="contained" color="primary" type="submit">
-            Add Food
-          </Button>
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              margin: '10px 0',
+            }}
+          >
+            <TextField
+              id="search"
+              label="Add food to fridge"
+              variant="standard"
+              onChange={this.handleChange}
+              style={{marginRight: '10px'}}
+              fullWidth
+            />
+            <Button variant="contained" color="primary" size="large" type="submit">
+              Add Food
+            </Button>
+          </div>
         </form>
         {currentFridge.map((item, index) => (
           <FridgeItem
@@ -96,24 +108,27 @@ class Fridge extends Component {
             handleRemoveFoodItem={this.handleRemoveFoodItem}
           />
         ))}
-        <Link
-          to={{
-            pathname: '/results',
-            state: {
-              generalSearchTerms: this.state.generalSearchTerms,
-              user: this.props.user,
-            },
-          }}
-        >
-          <Button
-            variant="contained"
-            color="primary"
-            disabled={currentFridge.length > 0 ? '' : true}
-            onClick={this.handleApiCall}
+        <div style={{textAlign:'center'}}>
+          <Link
+            to={{
+              pathname: '/results',
+              state: {
+                generalSearchTerms: this.state.generalSearchTerms,
+                user: this.props.user,
+              },
+            }}
           >
-            Search Recipes
-          </Button>
-        </Link>
+            <Button
+              variant="contained"
+              color="primary"
+              disabled={currentFridge.length > 0 ? '' : true}
+              onClick={this.handleApiCall}
+              size="large"
+            >
+              Search Recipes
+            </Button>
+          </Link>
+        </div>
       </>
     );
   }
