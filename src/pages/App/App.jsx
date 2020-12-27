@@ -5,7 +5,7 @@ import Signup from '../Signup/Signup';
 import Login from '../Login/Login';
 import authService from '../../services/authService';
 import Users from '../Users/Users';
-import Favorites from '../Favorites/Favorites';
+// import Favorites from '../Favorites/Favorites';
 import ShoppingList from '../ShoppingList/ShoppingList';
 import Fridge from '../Fridge/Fridge';
 import Landing from '../Landing/Landing';
@@ -40,7 +40,7 @@ class App extends Component {
     return (
       <>
         <NavBar user={user} handleLogout={this.handleLogout} />
-        <Container maxWidth="sm" >
+        <Container maxWidth="sm" style={{margin: '20px auto'}} >
           <Route
             exact
             path="/"
@@ -78,12 +78,12 @@ class App extends Component {
             render={() => (user ? <Users /> : <Redirect to="/login" />)}
           />
           {/* Route to Recipe */}
-          <Route exact path="/favorites" render={() => <Favorites />} />
+          {/* <Route exact path="/favorites" render={() => <Favorites />} /> */}
           {/* Route to Shopping List */}
           <Route
             exact
             path="/shopping-list"
-            render={({ location }) => <ShoppingList location={location} />}
+            render={({history, location }) => <ShoppingList location={location} history={history} />}
           />
           <Route
             exact

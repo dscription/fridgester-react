@@ -5,7 +5,6 @@ import {
   CardContent,
   CardActions,
   Checkbox,
-  CardHeader,
   FormControl,
   FormControlLabel,
   Typography,
@@ -34,9 +33,12 @@ class ShoppingList extends Component {
 
   handleDoneShopping = async () => {
     const { newFridgeItems } = this.state;
-    const createdFridgeItems = await fridgeItemAPI.createFridgeItem(
-      newFridgeItems
-    );
+    if (newFridgeItems.length > 0) {
+      await fridgeItemAPI.createFridgeItem(newFridgeItems);
+      window.location = this.props.location.state.recipeLink;
+    } else {
+      window.location = this.props.location.state.recipeLink;
+    }
   };
 
   render() {
@@ -62,7 +64,7 @@ class ShoppingList extends Component {
               ) : (
                 <FormControlLabel
                   value={ingredient}
-                  control={<Checkbox color="pirmary"  />}
+                  control={<Checkbox color="pirmary" />}
                   label={<Typography variant="h4">{ingredient}</Typography>}
                   labelPlacement="end"
                   onClick={this.handleCheckInput}
@@ -77,7 +79,7 @@ class ShoppingList extends Component {
             color="primary"
             onClick={this.handleDoneShopping}
           >
-            Done Shopping
+            Finish Shopping & View Recipe
           </Button>
         </CardActions>
       </Card>

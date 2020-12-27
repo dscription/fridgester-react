@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
 
 const RecipeResult = ({ details, currentIngredients }) => {
   const classes = useStyles();
-  const { title, ingredients, thumbnail } = details;
+  const { title, ingredients, thumbnail, href } = details;
   const ingr = ingredients.split(', ');
 
   return (
@@ -50,6 +50,7 @@ const RecipeResult = ({ details, currentIngredients }) => {
             state: {
               ingredients: ingr,
               currentIngredients: currentIngredients,
+              recipeLink: href
             },
           }}
         >
