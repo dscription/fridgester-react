@@ -4,11 +4,14 @@ import FridgeItem from '../../components/FridgeItem/FridgeItem';
 import {
   Button,
   TextField,
-  Card,
-  CardContent,
-  CardActions,
-  Typography
+  Typography,
+  FormControl,
+  MenuItem,
+  Select,
+  InputLabel,
+  FormHelperText,
 } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 import * as fridgeItemAPI from '../../services/fridgeItemService';
 
 class Fridge extends Component {
@@ -19,6 +22,7 @@ class Fridge extends Component {
     },
     currentFridge: [],
     generalSearchTerms: [],
+    mealType: 'sandwich',
   };
 
   handleAddFoodItem = async (e) => {
@@ -53,6 +57,12 @@ class Fridge extends Component {
     this.setState({ formData });
   };
 
+  handleChangeMealType = (e) => {
+    let mealType = this.state.mealType;
+    mealType = e.target.value;
+    this.setState({ mealType });
+  };
+
   updateGeneralSearchTerms = (fridgeItems) => {
     const fridge = fridgeItems;
     const generalSearchTerms = [];
@@ -62,24 +72,20 @@ class Fridge extends Component {
     this.setState({ generalSearchTerms });
   };
 
-  // handleApiCall = () => {
-  //   this.props.handleApiCall(this.state.generalSearchTerms);
-  // };
-
   async componentDidMount() {
     const currentFridge = await fridgeItemAPI.getCurrentFridgeItems();
     this.setState({ currentFridge });
     this.updateGeneralSearchTerms(this.state.currentFridge);
   }
 
-  // TODO: If current fridge is empty render some sort of useful message to the screen for the user.
-
   render() {
     const { currentFridge } = this.state;
 
     return (
       <>
-        <Typography variant="h3" component="h1" align="center">Fridge</Typography>
+        <Typography variant="h3" component="h1" align="center">
+          Fridge
+        </Typography>
         <form onSubmit={this.handleAddFoodItem}>
           <div
             style={{
@@ -90,14 +96,19 @@ class Fridge extends Component {
           >
             <TextField
               id="search"
-              label="Add food to fridge"
+              label="Add an item to your fridge."
               variant="standard"
               onChange={this.handleChange}
-              style={{marginRight: '10px'}}
+              style={{ marginRight: '10px' }}
               fullWidth
             />
-            <Button variant="contained" color="primary" size="large" type="submit">
-              Add Food
+            <Button
+              variant="contained"
+              color="primary"
+              size="medium"
+              type="submit"
+            >
+              Add
             </Button>
           </div>
         </form>
@@ -108,7 +119,32 @@ class Fridge extends Component {
             handleRemoveFoodItem={this.handleRemoveFoodItem}
           />
         ))}
-        <div style={{textAlign:'center'}}>
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'space-around',
+            // textAlign: 'center',
+            alignItems: 'center'
+          }}
+        >
+          {/* <FormControl className={classes.formControl}> */}
+          <FormControl>
+            <InputLabel id="select-meal-type">
+              Select Meal Type
+            </InputLabel>
+            <Select
+              labelId="mealType"
+              id="mealType"
+              value={this.state.mealType}
+              onChange={this.handleChangeMealType}
+              style={{minWidth: 200}}
+            >
+              <MenuItem value="sandwich">Sandwich</MenuItem>
+              <MenuItem value="soup">Soup</MenuItem>
+              <MenuItem value="stew">Stew</MenuItem>
+              <MenuItem value="baked">Baked</MenuItem>
+            </Select>
+          </FormControl>
           <Link
             to={{
               pathname: '/results',
@@ -122,7 +158,6 @@ class Fridge extends Component {
               variant="contained"
               color="primary"
               disabled={currentFridge.length > 0 ? '' : true}
-              // onClick={this.handleApiCall}
               size="large"
             >
               Search Recipes
