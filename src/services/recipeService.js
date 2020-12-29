@@ -89,10 +89,9 @@ export function deleteFavoriteRecipe(recipeId) {
   ).then((res) => res.json());
 }
 
-export function searchApi(query) {
-  const foodType = 'sandwich';
+export function searchApi(ingredients, mealType) {
   return fetch(
-    `https://recipepuppyproxy.herokuapp.com/api/?i=${query}&q=${foodType}&p=3`,
+    `https://recipepuppyproxy.herokuapp.com/api/?i=${ingredients}&q=${mealType}&p=3`,
     {
       method: 'GET',
       headers: {

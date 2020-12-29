@@ -6,6 +6,7 @@ import * as recipeAPI from '../../services/recipeService';
 
 const Results = ({ location }) => {
   const currentIngredients = location.state.generalSearchTerms;
+  const mealType = location.state.mealType
   const [recipes, setRecipes] = useState(null);
   useEffect(() => {
     getRecipes()
@@ -13,7 +14,7 @@ const Results = ({ location }) => {
   }, []);
 
   const getRecipes = async () => {
-    const response = await recipeAPI.searchApi(currentIngredients)
+    const response = await recipeAPI.searchApi(currentIngredients,mealType)
     setRecipes(response.results)
   }
   return (

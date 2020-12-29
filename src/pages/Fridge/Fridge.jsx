@@ -9,13 +9,12 @@ import {
   MenuItem,
   Select,
   InputLabel,
-  FormHelperText,
 } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
 import * as fridgeItemAPI from '../../services/fridgeItemService';
 
 class Fridge extends Component {
   state = {
+    // Do I need this value field?
     value: '',
     formData: {
       name: '',
@@ -150,6 +149,7 @@ class Fridge extends Component {
               pathname: '/results',
               state: {
                 generalSearchTerms: this.state.generalSearchTerms,
+                mealType: this.state.mealType,
                 user: this.props.user,
               },
             }}
