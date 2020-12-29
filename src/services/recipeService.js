@@ -90,7 +90,6 @@ export function deleteFavoriteRecipe(recipeId) {
 }
 
 export function searchApi(query) {
-  console.log(query);
   const foodType = 'sandwich';
   return fetch(
     `https://recipepuppyproxy.herokuapp.com/api/?i=${query}&q=${foodType}&p=3`,
