@@ -62,9 +62,9 @@ class Fridge extends Component {
     this.setState({ generalSearchTerms });
   };
 
-  handleApiCall = () => {
-    this.props.handleApiCall(this.state.generalSearchTerms);
-  };
+  // handleApiCall = () => {
+  //   this.props.handleApiCall(this.state.generalSearchTerms);
+  // };
 
   async componentDidMount() {
     const currentFridge = await fridgeItemAPI.getCurrentFridgeItems();
@@ -122,7 +122,7 @@ class Fridge extends Component {
               variant="contained"
               color="primary"
               disabled={currentFridge.length > 0 ? '' : true}
-              onClick={this.handleApiCall}
+              // onClick={this.handleApiCall}
               size="large"
             >
               Search Recipes

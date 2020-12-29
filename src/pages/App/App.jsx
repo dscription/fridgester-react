@@ -5,7 +5,6 @@ import Signup from '../Signup/Signup';
 import Login from '../Login/Login';
 import authService from '../../services/authService';
 import Users from '../Users/Users';
-// import Favorites from '../Favorites/Favorites';
 import ShoppingList from '../ShoppingList/ShoppingList';
 import Fridge from '../Fridge/Fridge';
 import Landing from '../Landing/Landing';
@@ -18,7 +17,6 @@ import {Container} from '@material-ui/core'
 class App extends Component {
   state = {
     user: authService.getUser(),
-    results: [],
   };
 
   handleLogout = () => {
@@ -28,11 +26,6 @@ class App extends Component {
 
   handleSignupOrLogin = () => {
     this.setState({ user: authService.getUser() });
-  };
-
-  handleApiCall = async (data) => {
-    const results = await recipeAPI.searchApi(data);
-    this.setState({ results: results.results });
   };
 
   render() {
@@ -92,7 +85,6 @@ class App extends Component {
               <Results
                 history={history}
                 location={location}
-                results={this.state.results}
               />
             )}
           />

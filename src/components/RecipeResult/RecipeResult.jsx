@@ -10,6 +10,7 @@ import {
   CardActions,
   Typography,
 } from '@material-ui/core';
+import SkeletonRecipe from '../skeletons/SkeletonRecipe';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -59,6 +60,7 @@ const RecipeResult = ({ details, currentIngredients }) => {
           </Button>
         </Link>
       </CardActions>
+      
     </Card>
   );
 };
