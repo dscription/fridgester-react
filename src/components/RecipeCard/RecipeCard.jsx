@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const RecipeResult = ({ details, currentIngredients }) => {
+const RecipeCard = ({ details, currentIngredients }) => {
   const classes = useStyles();
   const { title, ingredients, thumbnail, href } = details;
   const ingr = ingredients.split(', ');
@@ -33,7 +33,7 @@ const RecipeResult = ({ details, currentIngredients }) => {
   return (
     <Card className={classes.root}>
       <CardHeader title={title} />
-      <CardMedia component="img" src={thumbnail} title={title} />
+      <CardMedia component="img" src={thumbnail ? thumbnail : 'https://i.imgur.com/iYhSQba.png'} title={title} />
       <CardContent>
         <Typography variant="h4" component="p">
           Ingredients:
@@ -65,4 +65,4 @@ const RecipeResult = ({ details, currentIngredients }) => {
   );
 };
 
-export default RecipeResult;
+export default RecipeCard;

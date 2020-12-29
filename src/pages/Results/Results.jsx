@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import RecipeResult from '../../components/RecipeResult/RecipeResult';
+import RecipeCard from '../../components/RecipeCard/RecipeCard';
 import SkeletonRecipe from '../../components/skeletons/SkeletonRecipe';
 import { Typography } from '@material-ui/core';
 import * as recipeAPI from '../../services/recipeService';
@@ -9,6 +9,7 @@ const Results = ({ location }) => {
   const [recipes, setRecipes] = useState(null);
   useEffect(() => {
     getRecipes()
+    console.log(recipes)
   }, []);
 
   const getRecipes = async () => {
@@ -21,9 +22,9 @@ const Results = ({ location }) => {
         Recipe Results:
       </Typography>
       {recipes &&
-        recipes.map((result) => (
-          <RecipeResult
-            details={result}
+        recipes.map((recipe) => (
+          <RecipeCard
+            details={recipe}
             currentIngredients={currentIngredients}
           />
         ))}
