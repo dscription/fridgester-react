@@ -5,9 +5,11 @@ import {
   Button,
   TextField,
   Typography,
+  Input,
   InputLabel,
   Card,
   CardContent,
+  FormControl,
 } from '@material-ui/core';
 
 class LoginPage extends Component {
@@ -48,47 +50,46 @@ class LoginPage extends Component {
         }}
       >
         <Card style={{ width: '300px', margin: '0px auto' }}>
-          <CardContent>
+          <CardContent style={{ width: '100%' }}>
             <Typography variant="h2" component="h1">
               Log In
             </Typography>
-            <div style={{ width: '100%' }}>
-              <form autoComplete="off" onSubmit={this.handleSubmit}>
-                <div style={{ margin: '10px auto' }}>
-                  <TextField
-                    type="text"
-                    variant="outlined"
-                    autoComplete="off"
-                    id="email"
-                    value={email}
-                    name="email"
-                    onChange={this.handleChange}
-                  />
-                  <InputLabel htmlFor="email">Email:</InputLabel>
-                </div>
-                <div>
-                  <TextField
-                    type="password"
-                    variant="outlined"
-                    autoComplete="off"
-                    id="password"
-                    value={pw}
-                    name="pw"
-                    onChange={this.handleChange}
-                  />
-                  <InputLabel htmlFor="password">Password:</InputLabel>
-                </div>
-                <Button variant="contained" color="primary">
-                  Log In
+
+            <form autoComplete="off" onSubmit={this.handleSubmit}>
+              <div>
+                <TextField
+                  type="text"
+                  variant="outlined"
+                  autoComplete="off"
+                  id="email"
+                  value={email}
+                  name="email"
+                  onChange={this.handleChange}
+                />
+                <InputLabel htmlFor="email">Email:</InputLabel>
+              </div>
+              <div>
+                <TextField
+                  type="password"
+                  variant="outlined"
+                  autoComplete="off"
+                  id="password"
+                  value={pw}
+                  name="pw"
+                  onChange={this.handleChange}
+                />
+                <InputLabel htmlFor="password">Password:</InputLabel>
+              </div>
+              <Button variant="contained" color="primary">
+                Log In
+              </Button>
+              &nbsp;&nbsp;&nbsp;
+              <Link to="/">
+                <Button variant="contained" color="secondary">
+                  Cancel
                 </Button>
-                &nbsp;&nbsp;&nbsp;
-                <Link to="/">
-                  <Button variant="contained" color="secondary">
-                    Cancel
-                  </Button>
-                </Link>
-              </form>
-            </div>
+              </Link>
+            </form>
           </CardContent>
         </Card>
       </main>

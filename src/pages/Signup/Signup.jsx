@@ -1,10 +1,9 @@
-import React, { Component } from "react";
-import SignupForm from "../../components/SignupForm/SignupForm";
-
+import React, { Component } from 'react';
+import SignupForm from '../../components/SignupForm/SignupForm';
 
 class Signup extends Component {
   state = {
-    message: "",
+    message: '',
   };
 
   updateMessage = (msg) => {
@@ -13,7 +12,14 @@ class Signup extends Component {
 
   render() {
     return (
-      <main>
+      <main
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          height: '90vh',
+        }}
+      >
         <SignupForm {...this.props} updateMessage={this.updateMessage} />
         <p>{this.state.message}</p>
       </main>

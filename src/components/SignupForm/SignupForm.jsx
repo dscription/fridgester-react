@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import authService from '../../services/authService';
+
 import {
-  Container,
-  Input,
-  InputGroup,
-  Label,
   Button,
-  Form,
-} from '../styled_components';
+  TextField,
+  Typography,
+  InputLabel,
+  Card,
+  CardContent,
+} from '@material-ui/core';
 
 class SignupForm extends Component {
   state = {
@@ -46,60 +47,76 @@ class SignupForm extends Component {
   render() {
     const { name, email, password, passwordConf } = this.state;
     return (
-      <>
-        <Container>
-          <h3>Sign Up</h3>
-          <Form autoComplete="off" onSubmit={this.handleSubmit}>
-            <InputGroup>
-              <Label htmlFor="name">Name:</Label>
-              <Input
+      <Card style={{ width: '300px', margin: '0px auto' }}>
+        <CardContent>
+          <Typography variant="h2" component="h1">
+            Sign Up
+          </Typography>
+          <form autoComplete="off" onSubmit={this.handleSubmit}>
+            <div>
+              <TextField
                 type="text"
                 autoComplete="off"
                 id="name"
                 value={name}
                 name="name"
                 onChange={this.handleChange}
+                variant="outlined"
               />
-            </InputGroup>
-            <InputGroup>
-              <Label htmlFor="email">Email:</Label>
-              <Input
+              <InputLabel htmlFor="name">Name:</InputLabel>
+            </div>
+            <div>
+              <TextField
                 type="text"
                 autoComplete="off"
                 id="email"
                 value={email}
                 name="email"
                 onChange={this.handleChange}
+                variant="outlined"
               />
-            </InputGroup>
-            <InputGroup>
-              <Label htmlFor="password">Password:</Label>
-              <Input
+              <InputLabel htmlFor="email">Email:</InputLabel>
+            </div>
+            <div>
+              <TextField
                 type="password"
                 autoComplete="off"
                 id="password"
                 value={password}
                 name="password"
                 onChange={this.handleChange}
+                variant="outlined"
               />
-            </InputGroup>
-            <InputGroup>
-              <Label htmlFor="confirm">Confirm Password:</Label>
-              <Input
+              <InputLabel htmlFor="password">Password:</InputLabel>
+            </div>
+            <div>
+              <TextField
                 type="password"
                 autoComplete="off"
                 id="confirm"
                 value={passwordConf}
                 name="passwordConf"
                 onChange={this.handleChange}
+                variant="outlined"
               />
-            </InputGroup>
-            <Button disabled={this.isFormInvalid()}>Sign Up /n</Button>
+              <InputLabel htmlFor="confirm">Confirm Password:</InputLabel>
+            </div>
+            <Button
+              disabled={this.isFormInvalid()}
+              variant="contained"
+              color="primary"
+            >
+              Sign Up
+            </Button>
             &nbsp;&nbsp;&nbsp;&nbsp;
-            <Link to="/">Cancel</Link>
-          </Form>
-        </Container>
-      </>
+            <Link to="/">
+              <Button variant="contained" color="secondary">
+                Cancel
+              </Button>
+            </Link>
+          </form>
+        </CardContent>
+      </Card>
     );
   }
 }
