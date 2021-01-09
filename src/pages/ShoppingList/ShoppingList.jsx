@@ -46,43 +46,52 @@ class ShoppingList extends Component {
     const { ingredients } = state;
     const { currentIngredients } = state;
     return (
-      <Card>
-        <Typography variant="32" component="h1" align="center">
-          Shopping List
-        </Typography>
-        <CardContent align="center">
-          <FormControl>
-            {ingredients.map((ingredient) =>
-              currentIngredients.includes(ingredient) ? (
-                <FormControlLabel
-                  value={ingredient}
-                  control={<Checkbox color="pirmary" />}
-                  label={<Typography variant="h4">{ingredient}</Typography>}
-                  labelPlacement="end"
-                  checked={true}
-                />
-              ) : (
-                <FormControlLabel
-                  value={ingredient}
-                  control={<Checkbox color="pirmary" />}
-                  label={<Typography variant="h4">{ingredient}</Typography>}
-                  labelPlacement="end"
-                  onClick={this.handleCheckInput}
-                />
-              )
-            )}
-          </FormControl>
-        </CardContent>
-        <CardActions style={{ justifyContent: 'center' }}>
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={this.handleDoneShopping}
-          >
-            Finish Shopping & View Recipe
-          </Button>
-        </CardActions>
-      </Card>
+      <main
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          height: '90vh',
+        }}
+      >
+        <Card style={{ width: '300px', margin: '0px auto' }}>
+          <Typography variant="32" component="h1" align="center">
+            Shopping List
+          </Typography>
+          <CardContent align="center">
+            <FormControl>
+              {ingredients.map((ingredient) =>
+                currentIngredients.includes(ingredient) ? (
+                  <FormControlLabel
+                    value={ingredient}
+                    control={<Checkbox color="pirmary" />}
+                    label={<Typography variant="h4">{ingredient}</Typography>}
+                    labelPlacement="end"
+                    checked={true}
+                  />
+                ) : (
+                  <FormControlLabel
+                    value={ingredient}
+                    control={<Checkbox color="pirmary" />}
+                    label={<Typography variant="h4">{ingredient}</Typography>}
+                    labelPlacement="end"
+                    onClick={this.handleCheckInput}
+                  />
+                )
+              )}
+            </FormControl>
+          </CardContent>
+          <CardActions style={{ justifyContent: 'center' }}>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={this.handleDoneShopping}
+            >
+              Finish Shopping & View Recipe
+            </Button>
+          </CardActions>
+        </Card>
+      </main>
     );
   }
 }
