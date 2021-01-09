@@ -6,7 +6,9 @@ const FridgeItem = ({ item, handleRemoveFoodItem }) => {
   return (
     <Card variant="outlined" style={{ margin: '10px 0' }}>
       <CardContent style={{ display: 'flex', justifyContent: 'space-between' }}>
-        <Typography variant="h4" component="h3">{name}</Typography>
+        <Typography variant="h4" component="h3">
+          {name}
+        </Typography>
         <Button
           variant="contained"
           color="secondary"

@@ -6,17 +6,18 @@ import * as recipeAPI from '../../services/recipeService';
 
 const Results = ({ location }) => {
   const currentIngredients = location.state.generalSearchTerms;
-  const mealType = location.state.mealType
+  const mealType = location.state.mealType;
   const [recipes, setRecipes] = useState(null);
+
   useEffect(() => {
-    getRecipes()
-    console.log(recipes)
+    getRecipes();
+    console.log(recipes);
   }, []);
 
   const getRecipes = async () => {
-    const response = await recipeAPI.searchApi(currentIngredients,mealType)
-    setRecipes(response.results)
-  }
+    const response = await recipeAPI.searchApi(currentIngredients, mealType);
+    setRecipes(response.results);
+  };
   return (
     <>
       <Typography variant="h2" component="h1" align="center">

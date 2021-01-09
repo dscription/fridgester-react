@@ -4,14 +4,12 @@ import NavBar from '../../components/NavBar/NavBar';
 import Signup from '../Signup/Signup';
 import Login from '../Login/Login';
 import authService from '../../services/authService';
-import Users from '../Users/Users';
 import ShoppingList from '../ShoppingList/ShoppingList';
 import Fridge from '../Fridge/Fridge';
 import Landing from '../Landing/Landing';
 import Results from '../Results/Results';
 import './App.css';
-import {Container} from '@material-ui/core'
-
+import { Container } from '@material-ui/core';
 
 class App extends Component {
   state = {
@@ -32,7 +30,7 @@ class App extends Component {
     return (
       <>
         <NavBar user={user} handleLogout={this.handleLogout} />
-        <Container maxWidth="sm" style={{margin: '20px auto'}} >
+        <Container maxWidth="sm" style={{ margin: '20px auto' }}>
           <Route
             exact
             path="/"
@@ -66,25 +64,16 @@ class App extends Component {
           />
           <Route
             exact
-            path="/users"
-            render={() => (user ? <Users /> : <Redirect to="/login" />)}
-          />
-          {/* Route to Recipe */}
-          {/* <Route exact path="/favorites" render={() => <Favorites />} /> */}
-          {/* Route to Shopping List */}
-          <Route
-            exact
             path="/shopping-list"
-            render={({history, location }) => <ShoppingList location={location} history={history} />}
+            render={({ history, location }) => (
+              <ShoppingList location={location} history={history} />
+            )}
           />
           <Route
             exact
             path="/results"
             render={({ history, location }) => (
-              <Results
-                history={history}
-                location={location}
-              />
+              <Results history={history} location={location} />
             )}
           />
         </Container>

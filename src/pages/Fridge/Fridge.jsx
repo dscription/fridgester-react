@@ -14,7 +14,6 @@ import * as fridgeItemAPI from '../../services/fridgeItemService';
 
 class Fridge extends Component {
   state = {
-    // Do I need this value field?
     value: '',
     formData: {
       name: '',
@@ -123,20 +122,18 @@ class Fridge extends Component {
             display: 'flex',
             justifyContent: 'space-around',
             // textAlign: 'center',
-            alignItems: 'center'
+            alignItems: 'center',
           }}
         >
           {/* <FormControl className={classes.formControl}> */}
           <FormControl>
-            <InputLabel id="select-meal-type">
-              Select Meal Type
-            </InputLabel>
+            <InputLabel id="select-meal-type">Select Meal Type</InputLabel>
             <Select
               labelId="mealType"
               id="mealType"
               value={this.state.mealType}
               onChange={this.handleChangeMealType}
-              style={{minWidth: 200}}
+              style={{ minWidth: 200 }}
             >
               <MenuItem value="sandwich">Sandwich</MenuItem>
               <MenuItem value="soup">Soup</MenuItem>

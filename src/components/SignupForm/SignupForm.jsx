@@ -31,7 +31,6 @@ class SignupForm extends Component {
     e.preventDefault();
     try {
       await authService.signup(this.state);
-      // Let <App> know a user has signed up!
       handleSignupOrLogin();
       history.push('/');
     } catch (err) {

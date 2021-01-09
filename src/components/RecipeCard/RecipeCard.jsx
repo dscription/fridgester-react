@@ -10,7 +10,7 @@ import {
   CardActions,
   Typography,
 } from '@material-ui/core';
-import SkeletonRecipe from '../skeletons/SkeletonRecipe';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,8 +21,8 @@ const useStyles = makeStyles((theme) => ({
     color: 'red',
   },
   black: {
-    color: 'black'
-  }
+    color: 'black',
+  },
 }));
 
 const RecipeCard = ({ details, currentIngredients }) => {
@@ -33,25 +33,38 @@ const RecipeCard = ({ details, currentIngredients }) => {
   return (
     <Card className={classes.root}>
       <CardHeader title={title} />
-      <CardMedia component="img" src={thumbnail ? thumbnail : 'https://i.imgur.com/iYhSQba.png'} title={title} />
+      <CardMedia
+        component="img"
+        src={thumbnail ? thumbnail : 'https://i.imgur.com/iYhSQba.png'}
+        title={title}
+      />
       <CardContent>
         <Typography variant="h4" component="p">
           Ingredients:
         </Typography>
-        {ingr.map((ingredient) =>(
-        <Typography variant="h5" component="span" className={currentIngredients.includes(ingredient) ? classes.red : classes.black}> {ingredient},</Typography>
-          
+        {ingr.map((ingredient) => (
+          <Typography
+            variant="h5"
+            component="span"
+            className={
+              currentIngredients.includes(ingredient)
+                ? classes.red
+                : classes.black
+            }
+          >
+            {ingredient},
+          </Typography>
         ))}
       </CardContent>
-      
-      <CardActions style={{justifyContent:'center'}}>
+
+      <CardActions style={{ justifyContent: 'center' }}>
         <Link
           to={{
             pathname: '/shopping-list',
             state: {
               ingredients: ingr,
               currentIngredients: currentIngredients,
-              recipeLink: href
+              recipeLink: href,
             },
           }}
         >
@@ -60,7 +73,6 @@ const RecipeCard = ({ details, currentIngredients }) => {
           </Button>
         </Link>
       </CardActions>
-      
     </Card>
   );
 };

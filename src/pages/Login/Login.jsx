@@ -5,11 +5,9 @@ import {
   Button,
   TextField,
   Typography,
-  Input,
   InputLabel,
   Card,
   CardContent,
-  FormControl,
 } from '@material-ui/core';
 
 class LoginPage extends Component {
@@ -29,11 +27,9 @@ class LoginPage extends Component {
     e.preventDefault();
     try {
       await authService.login(this.state);
-      // Let <App> know a user has signed up!
       handleSignupOrLogin();
       history.push('/');
     } catch (err) {
-      // Use a modal or toast in your apps instead of alert
       alert('Invalid Credentials!');
     }
   };
@@ -54,7 +50,6 @@ class LoginPage extends Component {
             <Typography variant="h2" component="h1">
               Log In
             </Typography>
-
             <form autoComplete="off" onSubmit={this.handleSubmit}>
               <div>
                 <TextField
