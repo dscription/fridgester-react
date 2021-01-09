@@ -20,23 +20,22 @@ const NavBar = ({ user, handleLogout }) => {
   return (
     <>
       {user ? (
-        <Navbar color="light" light expand="md">
-          <NavbarToggler onClick={toggle} />
-          <Collapse isOpen={isOpen} navbar>
-            <Nav className="mr-auto" navbar>
-              <NavItem>
-                <NavLink id="navItem" href="/">
-                  Your Fridge
-                </NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink id="navItem" href=" " onClick={handleLogout}>
-                  Log Out
-                </NavLink>
-              </NavItem>
-            </Nav>
-          </Collapse>
-        </Navbar>
+        <AppBar position="static">
+          <Toolbar>
+            <Typography variant="h3" style={{ flexGrow: '1' }}>
+              Fridgester
+            </Typography>
+            <Link to="/">
+              <Button style={{color: 'white'}}>
+                <Typography variant="h5">My Fridge</Typography>
+              </Button>
+            </Link>
+
+            <Button style={{color: 'white'}} onClick={handleLogout}>
+              <Typography variant="h5" >Logout</Typography>
+            </Button>
+          </Toolbar>
+        </AppBar>
       ) : (
         <AppBar position="static">
           <Toolbar>
@@ -44,12 +43,12 @@ const NavBar = ({ user, handleLogout }) => {
               Fridgester
             </Typography>
             <Link to="/signup">
-              <Button>
+              <Button style={{color: 'white'}}>
                 <Typography variant="h5">Signup</Typography>
               </Button>
             </Link>
             <Link to="/login">
-              <Button color="white">
+              <Button style={{color: 'white'}}>
                 <Typography variant="h5">Login</Typography>
               </Button>
             </Link>
@@ -61,19 +60,3 @@ const NavBar = ({ user, handleLogout }) => {
 };
 
 export default NavBar;
-
-{
-  /* <Navbar color="light" light expand="md">
-          <NavbarToggler onClick={toggle} />
-          <Collapse isOpen={isOpen} navbar>
-            <Nav className="mr-auto" navbar>
-              <NavItem>
-                <NavLink href="/login">Log In</NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink href="/signup">Signup</NavLink>
-              </NavItem>
-            </Nav>
-          </Collapse>
-        </Navbar> */
-}
