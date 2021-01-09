@@ -62,6 +62,7 @@ class SignupForm extends Component {
                 name="name"
                 onChange={this.handleChange}
                 variant="outlined"
+                fullWidth
               />
               <InputLabel htmlFor="name">Name:</InputLabel>
             </div>
@@ -74,6 +75,7 @@ class SignupForm extends Component {
                 name="email"
                 onChange={this.handleChange}
                 variant="outlined"
+                fullWidth
               />
               <InputLabel htmlFor="email">Email:</InputLabel>
             </div>
@@ -86,6 +88,7 @@ class SignupForm extends Component {
                 name="password"
                 onChange={this.handleChange}
                 variant="outlined"
+                fullWidth
               />
               <InputLabel htmlFor="password">Password:</InputLabel>
             </div>
@@ -98,6 +101,7 @@ class SignupForm extends Component {
                 name="passwordConf"
                 onChange={this.handleChange}
                 variant="outlined"
+                fullWidth
               />
               <InputLabel htmlFor="confirm">Confirm Password:</InputLabel>
             </div>

@@ -65,6 +65,7 @@ class LoginPage extends Component {
                   value={email}
                   name="email"
                   onChange={this.handleChange}
+                  fullWidth
                 />
                 <InputLabel htmlFor="email">Email:</InputLabel>
               </div>
@@ -77,10 +78,11 @@ class LoginPage extends Component {
                   value={pw}
                   name="pw"
                   onChange={this.handleChange}
+                  fullWidth
                 />
                 <InputLabel htmlFor="password">Password:</InputLabel>
               </div>
-              <Button variant="contained" color="primary">
+              <Button type="submit" variant="contained" color="primary">
                 Log In
               </Button>
               &nbsp;&nbsp;&nbsp;
