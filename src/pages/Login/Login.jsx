@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import authService from '../../services/authService';
 import {
-  Input,
-  InputGroup,
-  Label,
   Button,
-  Main,
-  Form
-} from '../../components/styled_components';
+  TextField,
+  Typography,
+  InputLabel,
+  Card,
+  CardContent,
+} from '@material-ui/core';
 
 class LoginPage extends Component {
   state = {
@@ -39,37 +39,59 @@ class LoginPage extends Component {
   render() {
     const { email, pw } = this.state;
     return (
-      <Main>
-        <h3>Log In</h3>
-        <Form autoComplete="off" onSubmit={this.handleSubmit}>
-          <InputGroup>
-            <Label htmlFor="email">Email:</Label>
-            <Input
-              type="text"
-              autoComplete="off"
-              id="email"
-              value={email}
-              name="email"
-              onChange={this.handleChange}
-            />
-          </InputGroup>
-          <InputGroup>
-            <Label htmlFor="password">Password:</Label>
-            <Input
-              type="password"
-              autoComplete="off"
-              id="password"
-              value={pw}
-              name="pw"
-              onChange={this.handleChange}
-            />
-          </InputGroup>
-          <Button className="btn green">Log In</Button>&nbsp;&nbsp;&nbsp;
-          <Link className="btn red" to="/">
-            Cancel
-          </Link>
-        </Form>
-      </Main>
+      <main
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          height: '90vh',
+        }}
+      >
+        <Card style={{ width: '300px', margin: '0px auto' }}>
+          <CardContent>
+            <Typography variant="h2" component="h1">
+              Log In
+            </Typography>
+            <div style={{ width: '100%' }}>
+              <form autoComplete="off" onSubmit={this.handleSubmit}>
+                <div style={{ margin: '10px auto' }}>
+                  <TextField
+                    type="text"
+                    variant="outlined"
+                    autoComplete="off"
+                    id="email"
+                    value={email}
+                    name="email"
+                    onChange={this.handleChange}
+                  />
+                  <InputLabel htmlFor="email">Email:</InputLabel>
+                </div>
+                <div>
+                  <TextField
+                    type="password"
+                    variant="outlined"
+                    autoComplete="off"
+                    id="password"
+                    value={pw}
+                    name="pw"
+                    onChange={this.handleChange}
+                  />
+                  <InputLabel htmlFor="password">Password:</InputLabel>
+                </div>
+                <Button variant="contained" color="primary">
+                  Log In
+                </Button>
+                &nbsp;&nbsp;&nbsp;
+                <Link to="/">
+                  <Button variant="contained" color="secondary">
+                    Cancel
+                  </Button>
+                </Link>
+              </form>
+            </div>
+          </CardContent>
+        </Card>
+      </main>
     );
   }
 }

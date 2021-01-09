@@ -10,7 +10,6 @@ import Fridge from '../Fridge/Fridge';
 import Landing from '../Landing/Landing';
 import Results from '../Results/Results';
 import './App.css';
-import * as recipeAPI from '../../services/recipeService';
 import {Container} from '@material-ui/core'
 
 
