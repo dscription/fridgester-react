@@ -11,6 +11,8 @@ import {
 } from 'reactstrap';
 import './NavBar.css';
 
+import { AppBar, Toolbar, Typography, Button } from '@material-ui/core';
+
 const NavBar = ({ user, handleLogout }) => {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
@@ -36,7 +38,32 @@ const NavBar = ({ user, handleLogout }) => {
           </Collapse>
         </Navbar>
       ) : (
-        <Navbar color="light" light expand="md">
+        <AppBar position="static">
+          <Toolbar>
+            <Typography variant="h3" style={{ flexGrow: '1' }}>
+              Fridgester
+            </Typography>
+            <Link to="/signup">
+              <Button>
+                <Typography variant="h5">Signup</Typography>
+              </Button>
+            </Link>
+            <Link to="/login">
+              <Button color="white">
+                <Typography variant="h5">Login</Typography>
+              </Button>
+            </Link>
+          </Toolbar>
+        </AppBar>
+      )}
+    </>
+  );
+};
+
+export default NavBar;
+
+{
+  /* <Navbar color="light" light expand="md">
           <NavbarToggler onClick={toggle} />
           <Collapse isOpen={isOpen} navbar>
             <Nav className="mr-auto" navbar>
@@ -48,10 +75,5 @@ const NavBar = ({ user, handleLogout }) => {
               </NavItem>
             </Nav>
           </Collapse>
-        </Navbar>
-      )}
-    </>
-  );
-};
-
-export default NavBar;
+        </Navbar> */
+}
